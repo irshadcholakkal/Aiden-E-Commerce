@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:aiden/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,15 +13,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    double height=MediaQuery.of(context).size.height;
-       double width=MediaQuery.of(context).size.width;
+     hight=MediaQuery.of(context).size.height;
+     width=MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(
         body:CustomScrollView(
           slivers: [
             SliverAppBar(
-              toolbarHeight:height*0.25,
+              toolbarHeight:hight! * 0.25,
             backgroundColor: Colors.transparent,
             
               flexibleSpace: Flexible(

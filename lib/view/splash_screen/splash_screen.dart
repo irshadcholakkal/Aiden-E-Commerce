@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:aiden/Utilis/text.dart';
-import 'package:aiden/View/SplashScreen/splashContents.dart';
+import 'package:aiden/utilis/text.dart';
+import 'package:aiden/view/splash_screen/splash_slide_page.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
