@@ -21,6 +21,10 @@ flutter:
   uses-material-design: true
 
   assets:
+<<<<<<< HEAD
    - Assets/
    - Assets/hide.png
+=======
+   - assets/
+>>>>>>> irshad
 
