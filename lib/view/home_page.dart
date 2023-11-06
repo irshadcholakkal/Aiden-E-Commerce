@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:aiden/utils/const.dart';
+import 'package:aiden/utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

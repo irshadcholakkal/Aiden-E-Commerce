@@ -22,4 +22,5 @@ flutter:
 
   assets:
    - Assets/
+   - Assets/hide.png
 
