@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:aiden/Utilis/text.dart';
 import 'package:aiden/View/SplashScreen/splashContents.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,15 +25,16 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Lottie.asset("Assets/infinity.json",height:20),
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.10,
+          ),
           Center(
-            child: 
-            Text("AIDEN", 
-            style: GoogleFonts.josefinSans(
-              fontSize: 35)),
-          )
+            child: brandName(30.00, Colors.black, FontWeight.w500)
+            
+          ),
+          Lottie.asset("Assets/infinity.json",height:50)
         ],
       ),
     );
