@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:aiden/utilis/text.dart';
+import 'package:aiden/utils/text.dart';
 import 'package:aiden/view/splash_screen/splash_slide_page.dart';
 
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: brandName(30.00, Colors.black, FontWeight.w500)
             
           ),
-          Lottie.asset("Assets/infinity.json",height:50)
+          Lottie.asset("assets/infinity.json",height:50)
         ],
       ),
     );
