@@ -1,4 +1,4 @@
-import 'package:aiden/View/SplashScreen/splashScreen.dart';
+import 'package:aiden/view/SplashScreen/splashScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
