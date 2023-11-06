@@ -22,15 +22,16 @@ class _contentsState extends State<ContentsOfSplashScreen> {
   }
 }
 Widget firstSlide(){
-  return Container(
-    child: Column(
-      children: [
-        Container()
-
+  return Column(
+    children: [
+      Container(
         
+        
+      )
 
-      ],
+      
 
-    ),
+    ],
+
   );
 }
