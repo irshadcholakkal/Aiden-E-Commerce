@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:aiden/Utilis/text.dart';
-import 'package:aiden/View/SplashScreen/splashContents.dart';
+import 'package:aiden/utilis/text.dart';
+import 'package:aiden/view/SplashScreen/splashContents.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
