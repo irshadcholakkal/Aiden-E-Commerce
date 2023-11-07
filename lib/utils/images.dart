@@ -1,3 +1,6 @@
 import 'package:flutter/material.dart';
 
-Image passwordHide = Image.asset("Assets/hide.png",scale: 24,);
+final hideImage = Image.asset("assets/images/hide.png",scale: 24,);
+final viewImage = Image.asset(
+  "assets/images/view.png",scale: 24
+);
