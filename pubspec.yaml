@@ -21,6 +21,7 @@ flutter:
   uses-material-design: true
 
   assets:
-   - Assets/
-   - Assets/hide.png
+   - assets/images
+   - assets/jsons
+  
 
