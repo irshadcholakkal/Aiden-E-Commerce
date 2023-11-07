@@ -1,4 +1,5 @@
 
+// import 'package:aiden/view/login_screen/login_screen.dart';
 import 'package:aiden/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +12,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
       home:SplashScreen()
+   // home: Loginscreen(),
     );
   }
 }

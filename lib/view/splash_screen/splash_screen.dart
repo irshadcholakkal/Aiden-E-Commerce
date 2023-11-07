@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:aiden/utilis/text.dart';
+import 'package:aiden/utils/text.dart';
 import 'package:aiden/view/splash_screen/splash_slide_page.dart';
 
 import 'package:flutter/material.dart';
