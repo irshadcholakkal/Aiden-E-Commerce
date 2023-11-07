@@ -42,7 +42,7 @@ Widget firstSlide(){
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-           child: Image.asset("assets/zahir-namane-TjUJJACTav4-unsplash.jpg",
+           child: Image.asset("assets/images/first demo.jpg",
            fit: BoxFit.fill,
 
         ),
