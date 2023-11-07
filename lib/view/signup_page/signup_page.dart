@@ -58,14 +58,15 @@ class _SignupPageState extends State<SignupPage> {
                             isPasswordHide = !isPasswordHide;
                           });
                         },
-                        icon: isPasswordHide ? passwordHide : eyeIcon)),
+                        icon: isPasswordHide ? eyeOffImage : eyeOnImage)),
                 customeTextField(
                     controller: confPasswordController,
                     labelText: "Confirm Password",
-                    icon: isPasswordHide ? passwordHide : eyeIcon)
+                    icon: isPasswordHide ? eyeOffImage : eyeOnImage)
               ],
             ),
-          )
+          ),
+          eyeOffImage,
         ],
       ),
     ));

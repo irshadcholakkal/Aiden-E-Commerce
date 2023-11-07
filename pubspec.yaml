@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.9
   google_fonts: ^6.1.0
   lottie: ^2.7.0
 
@@ -21,6 +22,6 @@ flutter:
   uses-material-design: true
 
   assets:
-   - Assets/
-   - Assets/hide.png
+  - assets/
+ 
 

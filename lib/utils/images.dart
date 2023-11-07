@@ -1,3 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-Image passwordHide = Image.asset("Assets/hide.png",scale: 24,);
+final  eyeOffImage = SvgPicture.asset("assets/eye-off.svg");
+final eyeOnImage = SvgPicture.asset("assets/eye.svg",);
