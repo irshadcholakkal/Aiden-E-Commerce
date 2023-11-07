@@ -1,6 +1,7 @@
 
 
-import 'package:aiden/utils/const.dart';
+
+import 'package:aiden/utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class ContentsOfSplashScreen extends StatefulWidget {
