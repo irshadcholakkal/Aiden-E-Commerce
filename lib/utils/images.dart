@@ -1,4 +1,6 @@
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
-final  eyeOffImage = SvgPicture.asset("assets/eye-off.svg");
-final eyeOnImage = SvgPicture.asset("assets/eye.svg",);
+final hideImage = Image.asset("assets/images/hide.png",scale: 24,);
+final viewImage = Image.asset(
+  "assets/images/view.png",scale: 24
+);
