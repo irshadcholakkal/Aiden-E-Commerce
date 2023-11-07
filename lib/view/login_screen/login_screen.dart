@@ -104,7 +104,7 @@ class _LoginscreenState extends State<Loginscreen> {
               ),
                Container(
                         height: 60,
-                        width: 350,
+                        width: 360,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
@@ -112,10 +112,7 @@ class _LoginscreenState extends State<Loginscreen> {
                                 color: Color.fromRGBO(138, 138, 141, 1))),
                         child: Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 70, right: 10),
-                           //   child: Image.asset('assets/login/logo.png'),
-                            ),
+                            // Image.asset('assets/images/googlelogo.png',),
                             Text(
                               'Sign Up with Google',
                               style: TextStyle(
