@@ -22,11 +22,10 @@ class _ContentsState extends State<ContentsOfSplashScreen> {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
             height: hight!*0.85,
-            width: width!*15,
+            width: width!*0.9,
             child:
              PageView(
             controller: _pageController,
@@ -47,7 +46,7 @@ class _ContentsState extends State<ContentsOfSplashScreen> {
             child: DotsIndicator(
               dotsCount:slides.length,
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start, ),
+               ),
           )
             ],
           )
