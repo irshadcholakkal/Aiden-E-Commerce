@@ -1,8 +1,8 @@
+
 import 'dart:async';
 
-import 'package:aiden/utils/text.dart';
 import 'package:aiden/view/splash_screen/splash_slide_page.dart';
-
+import 'package:aiden/view/widgets/brandname_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -31,10 +31,10 @@ class _SplashScreenState extends State<SplashScreen> {
             height: MediaQuery.of(context).size.height*0.10,
           ),
           Center(
-            child: brandName(30.00, Colors.black, FontWeight.w500)
-            
+            child:brandName( 30.00, Colors.black, FontWeight.w500)
+      
           ),
-          Lottie.asset("Assets/infinity.json",height:50)
+          Lottie.asset("assets/infinity.json",height:50)
         ],
       ),
     );

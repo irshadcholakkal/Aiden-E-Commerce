@@ -1,4 +1,4 @@
-import 'package:aiden/utils/text.dart';
+import 'package:aiden/view/widgets/brandname_text.dart';
 import 'package:flutter/material.dart';
 
 class Loginscreen extends StatefulWidget {
