@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                ),
                 ),
             ),
-             SliverToBoxAdapter(
+             const SliverToBoxAdapter(
               child: Column(
                 children: [
                   Text("data")
