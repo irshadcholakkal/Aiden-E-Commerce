@@ -1,6 +1,7 @@
 
 
-import 'package:aiden/utils/const.dart';
+
+import 'package:aiden/utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class ContentsOfSplashScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class _ContentsState extends State<ContentsOfSplashScreen> {
   Widget build(BuildContext context) {
     hight=MediaQuery.of(context).size.height;
     width=MediaQuery.of(context).size.width;
+    
     return Scaffold(
       body: Column(
         children: [
