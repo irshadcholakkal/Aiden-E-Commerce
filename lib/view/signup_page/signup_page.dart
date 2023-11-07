@@ -6,7 +6,7 @@ import 'package:aiden/view/widgets/brandname_text.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
-  SignupPage({super.key});
+  const SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -35,7 +35,7 @@ class _SignupPageState extends State<SignupPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           brandName(30.00, Colors.black, FontWeight.w500),
-          Container(
+          SizedBox(
             width: width! * .8,
             height: hight! * .3,
             child: Column(
@@ -44,7 +44,7 @@ class _SignupPageState extends State<SignupPage> {
                 customeTextField(
                     controller: userNameController,
                     labelText: "User Name",
-                    icon: Icon(Icons.abc)),
+                    icon: const Icon(Icons.abc)),
                 customeTextField(
                   controller: emailController,
                   labelText: "Email",

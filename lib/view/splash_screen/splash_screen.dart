@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child:brandName( 30.00, Colors.black, FontWeight.w500)
       
           ),
-          Lottie.asset("assets/infinity.json",height:50)
+          Lottie.asset("assets/jsons/infinity.json",height:50)
         ],
       ),
     );
