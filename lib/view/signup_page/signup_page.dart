@@ -2,6 +2,7 @@ import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/images.dart';
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
+import 'package:aiden/view/home_page.dart';
 import 'package:aiden/view/widgets/custom_textfield.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
@@ -35,7 +36,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(10),
         height: hight,
         width: width,
         child: Column(
@@ -53,8 +54,8 @@ class _SignupPageState extends State<SignupPage> {
                       fontSize: 20, fontWeight: FontWeight.w400)),
             ),
             SizedBox(
-              width: width! * .8,
-              height: hight! * .3,
+              width: width! * .87,
+              height: hight! * .346,
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -139,6 +140,10 @@ class _SignupPageState extends State<SignupPage> {
             ),
             ListTile(
                 leading: Checkbox(
+                    // fillColor: MaterialStatePropertyAll(Colors.red),
+                    // focusColor: const Color.fromARGB(255, 144, 101, 98),
+                    checkColor: const Color.fromARGB(255, 255, 255, 255),
+                    activeColor: lightGreen,
                     value: isCheckBoxEnabled,
                     onChanged: (_) {
                       setState(() {
@@ -147,10 +152,26 @@ class _SignupPageState extends State<SignupPage> {
                     }),
                 title: termsAndCondition),
             customeButton(
-                text: "Login",
+                context: context,
+                text: "Sign up",
                 onpressed: () {
                   setState(() {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      if (isCheckBoxEnabled != true) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Center(
+                          child: Text(
+                            "accept the terms & condition",
+                            style: GoogleFonts.poppins(),
+                          ),
+                        )));
+                      } else {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()));
+                      }
+                    }
                   });
                 },
                 bgColor: const MaterialStatePropertyAll(black))

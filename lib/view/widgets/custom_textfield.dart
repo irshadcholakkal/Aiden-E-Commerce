@@ -8,16 +8,15 @@ Widget customeTextField(
     Widget? icon,
     obsecure,
     String? Function(String?)? validator,
-    void Function(String)? onSubmitted
-    }) {
+    void Function(String)? onSubmitted}) {
   return TextFormField(
-  
     validator: validator,
-    onFieldSubmitted:onSubmitted,
+    onFieldSubmitted: onSubmitted,
     obscureText: obsecure ?? false,
     controller: controller,
     decoration: InputDecoration(
-      enabledBorder: InputBorder.none,
+      enabledBorder:
+          const UnderlineInputBorder(borderSide: BorderSide(width: .2)),
       focusedBorder:
           const UnderlineInputBorder(borderSide: BorderSide(width: .2)),
       labelText: labelText,
