@@ -1,5 +1,9 @@
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
+import 'package:aiden/view/login_screen/login_screen.dart';
+import 'package:aiden/view/signup_page/signup_page.dart';
+import 'package:aiden/view/widgets/custome_button.dart';
+import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:aiden/utils/images.dart';
@@ -12,43 +16,48 @@ class ContentsOfSplashScreen extends StatefulWidget {
 }
 PageController _pageController=PageController();
 int currentPage=0;
-final List<Widget>slides=[firstSlide(),secondSlide(),thirdSlide()];
+
 class _ContentsState extends State<ContentsOfSplashScreen> {
   @override
   Widget build(BuildContext context) {
+        
+
+
     hight = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-
+final List<Widget>slides=[firstSlide(),secondSlide(),thirdSlide(context)];
     return Scaffold(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+         crossAxisAlignment: CrossAxisAlignment.center,
+        
         children: [
+           
+     
           SizedBox(
-            height: hight!*0.85,
-            width: width!*0.9,
+            height: hight!*0.91,
+            width: width,
             child:
              PageView(
             controller: _pageController,
             children:slides,
+            onPageChanged: (int index) {
+              setState(() {
+                currentPage=index;
+                
+              });
+            },
           )
           ),
-          Row(
-            children: [
-              SizedBox(
-                 height: hight!*0.00,
-            width: width!*0.0,
-            
-              ),
-               Container(
-                color: Colors.black,
-            height: hight!*0.04,
-            width: width!*0.20,
+         
+           SizedBox(
+            height: hight!*0.05,
+            width: width,
             child: DotsIndicator(
-              dotsCount:slides.length,
-              mainAxisSize: MainAxisSize.max,
-               ),
-          )
-            ],
+          dotsCount:slides.length,
+          position: currentPage,
+           decorator: const DotsDecorator(spacing: EdgeInsets.all(15),activeColor: Colors.black)
+           ,
+           ),
           )
          
          
@@ -61,11 +70,14 @@ class _ContentsState extends State<ContentsOfSplashScreen> {
 Widget firstSlide() {
   return Column(
     children: [
-      SizedBox(
-        height: hight! * 0.12,
+       SizedBox(
+        height: hight! * 0.1,
       ),
+     
+     
       Center(
         child: Container(
+        
             height: hight! * 0.5,
             width: width! * 0.9,
             decoration: const BoxDecoration(
@@ -89,6 +101,7 @@ Widget firstSlide() {
         width: width! * 0.9,
         child: firstSlideTextsub,
       ),
+     
     ],
   );
 }
@@ -97,7 +110,7 @@ Widget secondSlide() {
   return Column(
     children: [
       SizedBox(
-        height: hight! * 0.12,
+        height: hight! * 0.1,
       ),
       Center(
         child: Container(
@@ -128,15 +141,15 @@ Widget secondSlide() {
   );
 }
 
-Widget thirdSlide() {
+Widget thirdSlide(BuildContext context) {
   return Column(
     children: [
       SizedBox(
-        height: hight! * 0.12,
+        height: hight! * 0.08,
       ),
       Center(
         child: Container(
-            height: hight! * 0.5,
+            height: hight! * 0.6,
             width: width! * 0.9,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -144,21 +157,21 @@ Widget thirdSlide() {
             child: thirdSlideImage),
       ),
       SizedBox(
-        height: hight! * 0.03,
-      ),
+        height: hight! * 0.05,),
+     
+         customeButton(bgColor:const MaterialStatePropertyAll(Colors.black),text: "Login",context: context,onpressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  ContentsOfSplashScreen(),));
+           // Please change the route from here //
+         },),
+    
       SizedBox(
-        height: hight! * 0.09,
-        width: width! * 0.9,
-        child: thirdSlideTextMain,
-      ),
-      SizedBox(
-        height: hight! * 0.025,
-      ),
-      SizedBox(
-        height: hight! * 0.06,
-        width: width! * 0.9,
-        child: thirdSlideTextsub,
-      ),
+        height: hight! * 0.02,),
+     
+        customeButton(bgColor:const MaterialStatePropertyAll(Colors.black),text: "SignUp",context: context,onpressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ContentsOfSplashScreen(),));
+          // Please change the route from here //
+        },)
+    
     ],
   );
 }
