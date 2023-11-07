@@ -31,9 +31,9 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         CircleAvatar(
-                          // child:
-                          //  IconButton(onPressed: (){}, 
-                          // icon: Image.asset("assets/images/logomenu.png"),color: Colors.white,),
+                          child:
+                           IconButton(onPressed: (){}, 
+                          icon: Image.asset("assets/images/logomenu.png",scale: 2,),color: Colors.white,),
                         )
                       ],
                     )
