@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget customeTextField(
-    {controller, String? labelText, dynamic icon, bool obsecure = true,String? Function(String?)? validator}) {
+    {controller,
+    String? labelText,
+    Widget? icon,
+    obsecure,
+    String? Function(String?)? validator,
+    void Function(String)? onSubmitted}) {
   return TextFormField(
-    validator:validator,
-    obscureText: obsecure,
+    validator: validator,
+    onFieldSubmitted: onSubmitted,
+    obscureText: obsecure ?? false,
     controller: controller,
     decoration: InputDecoration(
-      enabledBorder: InputBorder.none,
+      enabledBorder:
+          const UnderlineInputBorder(borderSide: BorderSide(width: .2)),
       focusedBorder:
           const UnderlineInputBorder(borderSide: BorderSide(width: .2)),
       labelText: labelText,
