@@ -7,6 +7,7 @@ import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:aiden/utils/images.dart';
+import 'package:lottie/lottie.dart';
 
 class ContentsOfSplashScreen extends StatefulWidget {
   const ContentsOfSplashScreen({super.key});
@@ -49,20 +50,17 @@ final List<Widget>slides=[firstSlide(),secondSlide(),thirdSlide(context)];
           )
           ),
          
-           Row(
-             children: [
-               SizedBox(
-                height: hight!*0.05,
-                width: width,
-                child: DotsIndicator(
+           SizedBox(
+            height: hight!*0.05,
+            width: width,
+            child: DotsIndicator(
           dotsCount:slides.length,
           position: currentPage,
-               decorator: const DotsDecorator(spacing: EdgeInsets.all(15),activeColor: Colors.black)
-               ,
-               ),
+           decorator: const DotsDecorator(spacing: EdgeInsets.all(15),activeColor: Colors.black)
+           ,
+           ),
           ),
-             ],
-           )
+         
          
          
         ],
