@@ -161,11 +161,12 @@ class _HomePageState extends State<HomePage> {
                 height: screensize.height * 0.13,
                 width: screensize.width * 0.8,
                 decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.all(Radius.circular(15),),),
-                    child: Column(children: [
-                      
-                    ]),
+                  color: Colors.black,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
+                child: Column(children: []),
               ),
             ],
           ),
