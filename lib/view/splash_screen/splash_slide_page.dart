@@ -15,43 +15,38 @@ class ContentsOfSplashScreen extends StatefulWidget {
   @override
   State<ContentsOfSplashScreen> createState() => _ContentsState();
 }
-PageController _pageController=PageController();
-int currentPage=0;
+
+PageController _pageController = PageController();
+int currentPage = 0;
 
 class _ContentsState extends State<ContentsOfSplashScreen> {
   @override
   Widget build(BuildContext context) {
-        
-
-
     hight = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-final List<Widget>slides=[firstSlide(),secondSlide(),thirdSlide(context)];
+    final List<Widget> slides = [
+      firstSlide(),
+      secondSlide(),
+      thirdSlide(context)
+    ];
     return Scaffold(
       body: Column(
-         crossAxisAlignment: CrossAxisAlignment.center,
-        
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           
-     
           SizedBox(
-            height: hight!*0.91,
-            width: width,
-            child:
-             PageView(
-            controller: _pageController,
-            children:slides,
-            onPageChanged: (int index) {
-              setState(() {
-                currentPage=index;
-                
-              });
-            },
-          )
-          ),
-         
-           SizedBox(
-            height: hight!*0.05,
+              height: hight! * 0.91,
+              width: width,
+              child: PageView(
+                controller: _pageController,
+                children: slides,
+                onPageChanged: (int index) {
+                  setState(() {
+                    currentPage = index;
+                  });
+                },
+              )),
+          SizedBox(
+            height: hight! * 0.05,
             width: width,
             child: DotsIndicator(
           dotsCount:slides.length,
@@ -72,14 +67,11 @@ final List<Widget>slides=[firstSlide(),secondSlide(),thirdSlide(context)];
 Widget firstSlide() {
   return Column(
     children: [
-       SizedBox(
+      SizedBox(
         height: hight! * 0.1,
       ),
-     
-     
       Center(
         child: Container(
-        
             height: hight! * 0.5,
             width: width! * 0.9,
             decoration: const BoxDecoration(
@@ -103,7 +95,6 @@ Widget firstSlide() {
         width: width! * 0.9,
         child: firstSlideTextsub,
       ),
-     
     ],
   );
 }
@@ -159,21 +150,37 @@ Widget thirdSlide(BuildContext context) {
             child: thirdSlideImage),
       ),
       SizedBox(
-        height: hight! * 0.05,),
-     
-         customeButton(bgColor:const MaterialStatePropertyAll(Colors.black),text: "Login",context: context,onpressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  ContentsOfSplashScreen(),));
-           // Please change the route from here //
-         },),
-    
-      SizedBox(
-        height: hight! * 0.02,),
-     
-        customeButton(bgColor:const MaterialStatePropertyAll(Colors.black),text: "SignUp",context: context,onpressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ContentsOfSplashScreen(),));
+        height: hight! * 0.05,
+      ),
+      customeButton(
+        bgColor: const MaterialStatePropertyAll(Colors.black),
+        text: "Login",
+        context: context,
+        onpressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Loginscreen(),
+              ));
           // Please change the route from here //
-        },)
-    
+        },
+      ),
+      SizedBox(
+        height: hight! * 0.02,
+      ),
+      customeButton(
+        bgColor: const MaterialStatePropertyAll(Colors.black),
+        text: "SignUp",
+        context: context,
+        onpressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SignupPage(),
+              ));
+          // Please change the route from here //
+        },
+      )
     ],
   );
 }

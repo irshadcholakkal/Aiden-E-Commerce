@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:aiden/view/splash_screen/splash_slide_page.dart';
@@ -18,10 +16,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 4), () { 
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>const ContentsOfSplashScreen() ,));
+    Timer(const Duration(seconds: 4), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ContentsOfSplashScreen(),
+          ));
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,13 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height*0.10,
+            height: MediaQuery.of(context).size.height * 0.10,
           ),
-          Center(
-            child:brandName( 30.00, Colors.black, FontWeight.w500)
-      
-          ),
-          Lottie.asset("assets/jsons/infinity.json",height:50)
+          Center(child: brandName(30.00, Colors.black, FontWeight.w500)),
+          Lottie.asset("assets/jsons/infinity.json", height: 50)
         ],
       ),
     );
