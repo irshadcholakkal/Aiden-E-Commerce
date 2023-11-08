@@ -49,16 +49,20 @@ final List<Widget>slides=[firstSlide(),secondSlide(),thirdSlide(context)];
           )
           ),
          
-           SizedBox(
-            height: hight!*0.05,
-            width: width,
-            child: DotsIndicator(
+           Row(
+             children: [
+               SizedBox(
+                height: hight!*0.05,
+                width: width,
+                child: DotsIndicator(
           dotsCount:slides.length,
           position: currentPage,
-           decorator: const DotsDecorator(spacing: EdgeInsets.all(15),activeColor: Colors.black)
-           ,
-           ),
-          )
+               decorator: const DotsDecorator(spacing: EdgeInsets.all(15),activeColor: Colors.black)
+               ,
+               ),
+          ),
+             ],
+           )
          
          
         ],
