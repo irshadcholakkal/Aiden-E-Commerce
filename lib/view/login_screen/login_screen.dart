@@ -1,6 +1,5 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/icons.dart';
-import 'package:aiden/view/widgets/custom_textfield.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,7 @@ class _LoginscreenState extends State<Loginscreen> {
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 brandName(28.0, Colors.black, FontWeight.w600),
@@ -38,34 +37,36 @@ class _LoginscreenState extends State<Loginscreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 80,
                         ),
                         Text(
                           "Welcome !",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800,
-                          ),
+                          style: GoogleFonts.rubik(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              letterSpacing: 1),
                         ),
                         Text(
                           "please login to continue our app",
-                          style: TextStyle(
+                          style: GoogleFonts.rubik(
                             color: Colors.grey,
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child:  TextFormField(
+                            child: TextFormField(
                               keyboardType: TextInputType.emailAddress,
                               controller: _email,
                               decoration: InputDecoration(
-                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: .2)),
+                                enabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(width: .2)),
                                 focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(width: .2)),
                                 labelText: "Email",
@@ -74,19 +75,16 @@ class _LoginscreenState extends State<Loginscreen> {
                                     fontWeight: FontWeight.w500,
                                     color: black),
                               ),
-                            )
-                           
-                            ),
+                            )),
                         Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child:
-                               
-                                TextFormField(
-                                  keyboardType: TextInputType.visiblePassword,
+                            child: TextFormField(
+                              keyboardType: TextInputType.visiblePassword,
                               obscureText: false,
                               controller: _password,
                               decoration: InputDecoration(
-                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(width: .2)),
+                                enabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(width: .2)),
                                 focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(width: .2)),
                                 labelText: "Password",
@@ -101,31 +99,15 @@ class _LoginscreenState extends State<Loginscreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
-                // Container(
-                //   height: 60,
-                //   width: 350,
-                //   decoration: BoxDecoration(
-                //       color: Colors.black,
-                //       borderRadius: BorderRadius.circular(20)),
-                //   child: Center(
-                //     child: Text(
-                //       "Login",
-                //       style: TextStyle(
-                //           color: Colors.white,
-                //           fontSize: 20,
-                //           fontWeight: FontWeight.w500),
-                //     ),
-                //   ),
-                // ),
                 customeButton(
                     text: 'Login',
                     onpressed: () {},
-                    bgColor: MaterialStatePropertyAll(Colors.black)),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                    bgColor: const MaterialStatePropertyAll(Colors.black)),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     "or",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
@@ -137,7 +119,8 @@ class _LoginscreenState extends State<Loginscreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
                       border: Border.all(
-                          width: 1, color: Color.fromRGBO(138, 138, 141, 1))),
+                          width: 1,
+                          color: const Color.fromRGBO(138, 138, 141, 1))),
                   child: Row(
                     children: [
                       Padding(
@@ -146,9 +129,9 @@ class _LoginscreenState extends State<Loginscreen> {
                           'assets/images/googlelogo.png',
                         ),
                       ),
-                      Text(
+                       Text(
                         'Sign Up with Google',
-                        style: TextStyle(
+                        style: GoogleFonts.rubik(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                             color: Colors.black),
@@ -156,7 +139,6 @@ class _LoginscreenState extends State<Loginscreen> {
                     ],
                   ),
                 ),
-                // Container()
               ],
             ),
           ),
