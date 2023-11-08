@@ -1,5 +1,5 @@
 import 'package:aiden/utils/colors.dart';
-import 'package:aiden/utils/icons.dart';
+import 'package:aiden/utils/images.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,10 @@ class _LoginscreenState extends State<Loginscreen> {
   TextEditingController email = TextEditingController();
 
   TextEditingController password = TextEditingController();
+
+  bool isPasswordHide = true;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +77,17 @@ class _LoginscreenState extends State<Loginscreen> {
                             child: TextFormField(
                               keyboardType: TextInputType.emailAddress,
                               controller: email,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "enter email address";
+                                }
+                                if (!RegExp(
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(value)) {
+                                  return "enter correct email address";
+                                }
+                                return null;
+                              },
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(width: .2)),
@@ -86,12 +101,21 @@ class _LoginscreenState extends State<Loginscreen> {
                               ),
                             )),
                         Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: false,
-                              controller: password,
-                              decoration: InputDecoration(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            keyboardType: TextInputType.visiblePassword,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "enter password";
+                              }
+                              if (value.length < 8) {
+                                return "password must be  8 digit ";
+                              }
+                              return null;
+                            },
+                            obscureText: isPasswordHide,
+                            controller: password,
+                            decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(width: .2)),
                                 focusedBorder: const UnderlineInputBorder(
@@ -101,9 +125,17 @@ class _LoginscreenState extends State<Loginscreen> {
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,
                                     color: black),
-                                suffixIcon: eyeIcon,
-                              ),
-                            ))
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isPasswordHide = !isPasswordHide;
+                                      });
+                                    },
+                                    icon: isPasswordHide
+                                        ? hideImage
+                                        : viewImage)),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -111,26 +143,20 @@ class _LoginscreenState extends State<Loginscreen> {
                 const SizedBox(
                   height: 80,
                 ),
-                // Container(
-                //   height: 60,
-                //   width: 350,
-                //   decoration: BoxDecoration(
-                //       color: Colors.black,
-                //       borderRadius: BorderRadius.circular(20)),
-                //   child: Center(
-                //     child: Text(
-                //       "Login",
-                //       style: TextStyle(
-                //           color: Colors.white,
-                //           fontSize: 20,
-                //           fontWeight: FontWeight.w500),
-                //     ),
-                //   ),
-                // ),
                 customeButton(
                     context: context,
                     text: 'Login',
-                    onpressed: () {},
+                    onpressed: () {
+                    //   setState(() {
+                    //     if (_formKey.currentState!.validate()) { {
+                    //       Navigator.pushReplacement(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) => const HomePage()));
+                    //     }
+                    //   }
+                    // });
+                    },
                     bgColor: const MaterialStatePropertyAll(Colors.black)),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
@@ -145,7 +171,8 @@ class _LoginscreenState extends State<Loginscreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
                       border: Border.all(
-                          width: 1, color: Color.fromRGBO(138, 138, 141, 1))),
+                          width: 1,
+                          color: const Color.fromRGBO(138, 138, 141, 1))),
                   child: Row(
                     children: [
                       Padding(
@@ -154,9 +181,9 @@ class _LoginscreenState extends State<Loginscreen> {
                           'assets/images/googlelogo.png',
                         ),
                       ),
-                      const Text(
+                      Text(
                         'Sign Up with Google',
-                        style: TextStyle(
+                        style: GoogleFonts.rubik(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                             color: Colors.black),
@@ -164,7 +191,6 @@ class _LoginscreenState extends State<Loginscreen> {
                     ],
                   ),
                 ),
-                // Container()
               ],
             ),
           ),
