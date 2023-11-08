@@ -2,7 +2,7 @@ import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/images.dart';
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
-import 'package:aiden/view/home_page.dart';
+import 'package:aiden/view/home_page/home_page.dart';
 import 'package:aiden/view/widgets/custom_textfield.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupPage extends StatefulWidget {
-  SignupPage({super.key});
+  const SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();

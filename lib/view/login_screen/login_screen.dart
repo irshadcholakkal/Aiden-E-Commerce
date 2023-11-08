@@ -1,6 +1,5 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/images.dart';
-import 'package:aiden/view/home_page.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
