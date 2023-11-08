@@ -2,6 +2,8 @@
 
 import 'package:aiden/view/forgot_page/forgotpage.dart';
 import 'package:aiden/view/login_screen/login_screen.dart';
+import 'package:aiden/view/signup_page/signup_page.dart';
+import 'package:aiden/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +17,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return    MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Forgotpage()
+      home: Loginscreen()
     );
   }
 }

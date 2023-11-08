@@ -1,5 +1,6 @@
 import 'package:aiden/utils/colors.dart';
-import 'package:aiden/utils/icons.dart';
+import 'package:aiden/utils/images.dart';
+import 'package:aiden/view/home_page.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +14,20 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-  TextEditingController _email = TextEditingController();
+  TextEditingController email = TextEditingController();
 
-  TextEditingController _password = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  bool isPasswordHide = true;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
@@ -40,21 +45,30 @@ class _LoginscreenState extends State<Loginscreen> {
                         const SizedBox(
                           height: 80,
                         ),
-                        Text(
-                          "Welcome !",
-                          style: GoogleFonts.rubik(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                              letterSpacing: 1),
-                        ),
-                        Text(
-                          "please login to continue our app",
-                          style: GoogleFonts.rubik(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
+                        // Text(
+                        //   "Welcome !",
+                        //   style: GoogleFonts.poppins(
+                        //     fontSize: 22,
+                        //     fontWeight: FontWeight.w800,
+                        //   ),
+                        // ),
+                        // Text(
+                        //   "please login to continue our app",
+                        //   style: GoogleFonts.poppins(
+                        //     color: Colors.grey,
+                        //     fontWeight: FontWeight.w600,
+                        //     fontSize: 18,
+                        //   ),
+                        // ),
+                        ListTile(
+                          title: Text(
+                            "Welcome !",
+                            style: GoogleFonts.poppins(
+                                fontSize: 30, fontWeight: FontWeight.w600),
                           ),
+                          subtitle: Text("Please login to continue our app",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 20, fontWeight: FontWeight.w400)),
                         ),
                         const SizedBox(
                           height: 50,
@@ -63,7 +77,18 @@ class _LoginscreenState extends State<Loginscreen> {
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               keyboardType: TextInputType.emailAddress,
-                              controller: _email,
+                              controller: email,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "enter email address";
+                                }
+                                if (!RegExp(
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(value)) {
+                                  return "enter correct email address";
+                                }
+                                return null;
+                              },
                               decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(width: .2)),
@@ -77,12 +102,21 @@ class _LoginscreenState extends State<Loginscreen> {
                               ),
                             )),
                         Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: false,
-                              controller: _password,
-                              decoration: InputDecoration(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            keyboardType: TextInputType.visiblePassword,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "enter password";
+                              }
+                              if (value.length < 8) {
+                                return "password must be  8 digit ";
+                              }
+                              return null;
+                            },
+                            obscureText: isPasswordHide,
+                            controller: password,
+                            decoration: InputDecoration(
                                 enabledBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(width: .2)),
                                 focusedBorder: const UnderlineInputBorder(
@@ -92,9 +126,17 @@ class _LoginscreenState extends State<Loginscreen> {
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,
                                     color: black),
-                                suffixIcon: eyeIcon,
-                              ),
-                            ))
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isPasswordHide = !isPasswordHide;
+                                      });
+                                    },
+                                    icon: isPasswordHide
+                                        ? hideImage
+                                        : viewImage)),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -103,8 +145,19 @@ class _LoginscreenState extends State<Loginscreen> {
                   height: 80,
                 ),
                 customeButton(
+                    context: context,
                     text: 'Login',
-                    onpressed: () {},
+                    onpressed: () {
+                    //   setState(() {
+                    //     if (_formKey.currentState!.validate()) { {
+                    //       Navigator.pushReplacement(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) => const HomePage()));
+                    //     }
+                    //   }
+                    // });
+                    },
                     bgColor: const MaterialStatePropertyAll(Colors.black)),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
@@ -129,7 +182,7 @@ class _LoginscreenState extends State<Loginscreen> {
                           'assets/images/googlelogo.png',
                         ),
                       ),
-                       Text(
+                      Text(
                         'Sign Up with Google',
                         style: GoogleFonts.rubik(
                             fontSize: 18,
