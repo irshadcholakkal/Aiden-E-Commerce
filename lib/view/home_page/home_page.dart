@@ -17,42 +17,157 @@ class _HomePageState extends State<HomePage> {
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-               SliverAppBar(
-                expandedHeight: screensize.height*0.3,
+              SliverAppBar(
+                backgroundColor: Colors.transparent,
+                expandedHeight: screensize.height * 0.4,
                 floating: false,
                 pinned: true,
+                centerTitle: true,
+                elevation: 0,
                 flexibleSpace: FlexibleSpaceBar(
-                    centerTitle: true,
-                    title: Text("Collapsing Toolbar",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                        )),
-                    background: Column(
-                      children: [
-                        SizedBox(height: screensize.height*0.06,),
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-
-                            CircleAvatar(backgroundColor: Colors.deepOrange,maxRadius: screensize.width*0.04,),
-                            SizedBox(width: screensize.width*0.55,),
-                            CircleAvatar(backgroundColor: Colors.deepPurple,maxRadius: screensize.width*0.048,)
-                          ],
+                  centerTitle: true,
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: screensize.width * 0.4,
+                        height: screensize.height * 0.042,
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
+                              offset: const Offset(12, 26),
+                              blurRadius: 50,
+                              spreadRadius: 0,
+                              color: Colors.grey.withOpacity(.1)),
+                        ]),
+                        child: TextField(
+                          showCursor: false,
+                          style: GoogleFonts.poppins(
+                              fontSize: 10, fontWeight: FontWeight.w500),
+                          onChanged: (value) {},
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.search,
+                              size: 16,
+                              color: Colors.black54,
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey.shade300,
+                            hintText: "search",
+                            hintStyle: const TextStyle(
+                                color: Colors.grey, fontSize: 13),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20.0),
+                            border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                            ),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 1.0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 2.0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                            ),
+                          ),
                         ),
-                        SizedBox(height: screensize.height*0.02,),
-                        Row(
-                          children: [
-                            SizedBox(width: screensize.width*0.06,),
-                            Text("data",style: GoogleFonts.poppins(fontSize: 18),),
-                          ],
+                      ),
+                      SizedBox(
+                        width: screensize.width * 0.02,
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.black,
+                        maxRadius: screensize.width * 0.035,
+                        child: Image.asset(
+                          "assets/images/settings_icon.png",
+                          color: Colors.grey,
+                          scale: 2,
                         ),
-                      ],
-                    )),
+                      )
+                    ],
+                  ),
+                  background: Column(
+                    children: [
+                      SizedBox(
+                        height: screensize.height * 0.06,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.black,
+                            maxRadius: screensize.width * 0.04,
+                            child: Image.asset(
+                              "assets/images/logomenu.png",
+                              color: Colors.white,
+                              scale: 6,
+                            ),
+                          ),
+                          SizedBox(
+                            width: screensize.width * 0.55,
+                          ),
+                          CircleAvatar(
+                            backgroundColor: Colors.purple.shade100,
+                            maxRadius: screensize.width * 0.048,
+                            child: Image.asset(
+                              "assets/images/hacker_icon.png",
+                              width: 35,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: screensize.height * 0.04,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: screensize.width * 0.05,
+                          ),
+                          Text(
+                            "Welcome,",
+                            style: GoogleFonts.poppins(
+                                fontSize: 25, fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: screensize.width * 0.05,
+                          ),
+                          Text(
+                            "To Fashion World",
+                            style: GoogleFonts.poppins(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ];
           },
-          body: const Center(
-            child: Text("Sample"),
+          body: Column(
+            children: [
+              Container(
+                height: screensize.height * 0.13,
+                width: screensize.width * 0.8,
+                decoration: const BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(Radius.circular(15),),),
+                    child: Column(children: [
+                      
+                    ]),
+              ),
+            ],
           ),
         ),
       ),
