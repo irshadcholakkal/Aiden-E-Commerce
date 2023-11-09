@@ -3,6 +3,7 @@ import 'package:aiden/utils/images.dart';
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
 import 'package:aiden/view/home_page/home_page.dart';
+import 'package:aiden/view/login_screen/login_screen.dart';
 import 'package:aiden/view/widgets/custom_textfield.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
@@ -58,83 +59,85 @@ class _SignupPageState extends State<SignupPage> {
               height: hight! * .346,
               child: Form(
                 key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    customeTextField(
-                        controller: userNameController,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      customeTextField(
+                          controller: userNameController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "enter user name";
+                            }
+                            return null;
+                          },
+                          labelText: "User Name",
+                          icon: userNameController.text.isNotEmpty
+                              ? const Icon(
+                                  Icons.check_circle_sharp,
+                                  color: lightGreen,
+                                )
+                              : const Icon(
+                                  Icons.check_circle_outline,
+                                  color: grey,
+                                )),
+                      customeTextField(
+                        controller: emailController,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "enter user name";
+                            return "enter email address";
+                          }
+                          if (!RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(value)) {
+                            return "enter correct email address";
                           }
                           return null;
                         },
-                        labelText: "User Name",
-                        icon: userNameController.text.isNotEmpty
-                            ? const Icon(
-                                Icons.check_circle_sharp,
-                                color: lightGreen,
-                              )
-                            : const Icon(
-                                Icons.check_circle_outline,
-                                color: grey,
-                              )),
-                    customeTextField(
-                      controller: emailController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "enter email address";
-                        }
-                        if (!RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(value)) {
-                          return "enter correct email address";
-                        }
-                        return null;
-                      },
-                      labelText: "Email",
-                    ),
-                    customeTextField(
-                        controller: passwordController,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "enter new password";
-                          }
-                          if (value.length < 8) {
-                            return "password must be  8 digit ";
-                          }
-                          return null;
-                        },
-                        labelText: "Password",
-                        obsecure: isPasswordHide,
-                        icon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                isPasswordHide = !isPasswordHide;
-                              });
-                            },
-                            icon: isPasswordHide ? hideImage : viewImage)),
-                    customeTextField(
-                        controller: confPasswordController,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "confirm your password";
-                          }
-                          if (value != passwordController.text) {
-                            return "does not match password";
-                          }
-                          return null;
-                        },
-                        labelText: "Confirm Password",
-                        obsecure: isPasswordHide,
-                        icon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                isPasswordHide = !isPasswordHide;
-                              });
-                            },
-                            icon: isPasswordHide ? hideImage : viewImage)),
-                  ],
+                        labelText: "Email",
+                      ),
+                      customeTextField(
+                          controller: passwordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "enter new password";
+                            }
+                            if (value.length < 8) {
+                              return "password must be  8 digit ";
+                            }
+                            return null;
+                          },
+                          labelText: "Password",
+                          obsecure: isPasswordHide,
+                          icon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isPasswordHide = !isPasswordHide;
+                                });
+                              },
+                              icon: isPasswordHide ? hideImage : viewImage)),
+                      customeTextField(
+                          controller: confPasswordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "confirm your password";
+                            }
+                            if (value != passwordController.text) {
+                              return "does not match password";
+                            }
+                            return null;
+                          },
+                          labelText: "Confirm Password",
+                          obsecure: isPasswordHide,
+                          icon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isPasswordHide = !isPasswordHide;
+                                });
+                              },
+                              icon: isPasswordHide ? hideImage : viewImage)),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -169,7 +172,7 @@ class _SignupPageState extends State<SignupPage> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage()));
+                                builder: (context) =>  Loginscreen()));
                       }
                     }
                   });
