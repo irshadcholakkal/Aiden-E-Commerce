@@ -1,4 +1,5 @@
 import 'package:aiden/view/home_page/home_page.dart';
+import 'package:aiden/view/login_screen/login_screen.dart';
 
 import 'package:aiden/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Loginscreen());
   }
 }
