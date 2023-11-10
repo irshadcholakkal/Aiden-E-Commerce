@@ -3,6 +3,7 @@ import 'package:aiden/utils/images.dart';
 import 'package:aiden/view/forgot_page/forgotpage.dart';
 import 'package:aiden/view/home_page/home_page.dart';
 import 'package:aiden/view/signup_page/signup_page.dart';
+import 'package:aiden/view/startshopping/startingpage.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -169,7 +170,7 @@ class _LoginscreenState extends State<Loginscreen> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomePage()));
+                            builder: (context) => const Startingpage()));
                   }
                 },
                 bgColor: const MaterialStatePropertyAll(Colors.black)),
