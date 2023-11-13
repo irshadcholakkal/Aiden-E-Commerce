@@ -1,8 +1,4 @@
-import 'package:aiden/view/forgot_page/forgotpage.dart';
 import 'package:aiden/view/home_page/home_page.dart';
-import 'package:aiden/view/login_screen/login_screen.dart';
-import 'package:aiden/view/signup_page/signup_page.dart';
-
 import 'package:flutter/material.dart';
 
 void main() {
