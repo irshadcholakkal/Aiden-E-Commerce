@@ -1,4 +1,5 @@
 import 'package:aiden/utils/colors.dart';
+import 'package:aiden/view/widgets/custom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -267,6 +268,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+        bottomNavigationBar: navBar(context:context),
       ),
     );
   }

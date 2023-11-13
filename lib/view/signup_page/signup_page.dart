@@ -2,6 +2,7 @@ import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/images.dart';
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
+import 'package:aiden/view/home_page/home_page.dart';
 import 'package:aiden/view/login_screen/login_screen.dart';
 import 'package:aiden/view/widgets/custom_textfield.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
@@ -171,7 +172,7 @@ class _SignupPageState extends State<SignupPage> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  Loginscreen()));
+                                builder: (context) =>  HomePage()));
                       }
                     }
                   });
