@@ -159,97 +159,110 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             children: [
               SizedBox(height: screensize.height*0.02,),
-              Container(
-                height: screensize.height * 0.14,
-                width: screensize.width * 0.8,
-                decoration: const BoxDecoration(
-                  // color: Colors.black,
-                 boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54,
-                      offset: Offset(
-                        5.0,
-                        5.0,
-                      ),
-                      blurRadius: 10.0,
-                      spreadRadius: 2.0,
-                    ), //BoxShadow
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(0.0, 0.0),
-                      blurRadius: 0.0,
-                      spreadRadius: 0.0,
-                    ), //BoxShadow
-                  ],
+              SizedBox(
+                height: screensize.height * 0.17,
+                    width: screensize.width,
+                child: PageView.builder(
                   
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15),
-                  ),
-                ),
-                child: Column(children: [
-                  SizedBox(height: screensize.height*0.013),
-                  Row(
-                    children: [
-                      SizedBox(width: screensize.width*0.015),
-                      Container(
-                        height: screensize.height*0.105,
-                        width: screensize.width*0.17,
-                        decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(15),
-                         color: Colors.white
-                        ),
-                        child: Image.asset("assets/images/first demo.jpg"),
-                      ), SizedBox(width: screensize.width*0.015),
-                      
-                       Container(
-                        height: screensize.height*0.12,
-                        width: screensize.width*0.45,
-                        decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(15),
-                         color: Colors.white
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(height: screensize.height*0.013),
-                            Row(
-                              children: [SizedBox(width: screensize.width*0.02),
-                                Text("Axel Arigato",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: black),)
-                              ],
-                            ),
-                             Row(
-                              children: [SizedBox(width: screensize.width*0.02),
-                                SizedBox(width: screensize.width*0.43, child: Text("Clean 90 Triple Sneakers",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.w400,color: Colors.grey.shade500),))
-                              ],
-                            ),
-                             Row(
-                              children: [SizedBox(width: screensize.width*0.02),
-                                Text("\$245",style: GoogleFonts.poppins(fontSize: 14,fontWeight: FontWeight.w700,color: Colors.black),)
-                              ],
-                            )
-                          ],
-                        ),
-                      ),SizedBox(width: screensize.width*0.015),
-                      Container(
-                        height: screensize.height*0.105,
-                        width: screensize.width*0.12,
-                        decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(15),
-                         color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Container( height: screensize.height*0.05,
-                          width: screensize.width*0.111,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                         color: Colors.black,
-                            ),
-                            child: Image.asset("assets/images/right-arrow.png",color: Colors.white,),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                  
+                return  Container(
+                  margin: EdgeInsets.all(15),
+                    height: screensize.height * 0.14,
+                    width: screensize.width * 0.8,
+                    decoration: const BoxDecoration(
+                      // color: Colors.black,
+                     boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(55, 0, 0, 0),
+                          offset: Offset(
+                            5.0,
+                            5.0,
                           ),
-                        ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        ), //BoxShadow
+                        BoxShadow(
+                          color: Colors.white,
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 0.0,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ],
+                      
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    child: Column(children: [
+                      SizedBox(height: screensize.height*0.013),
+                      Row(
+                        children: [
+                          SizedBox(width: screensize.width*0.015),
+                          Container(
+                            height: screensize.height*0.105,
+                            width: screensize.width*0.17,
+                            decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(15),
+                             color: Colors.white
+                            ),
+                            child: Image.asset("assets/images/first demo.jpg"),
+                          ), SizedBox(width: screensize.width*0.015),
+                          
+                           Container(
+                            height: screensize.height*0.12,
+                            width: screensize.width*0.45,
+                            decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(15),
+                             color: Colors.white
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(height: screensize.height*0.013),
+                                Row(
+                                  children: [SizedBox(width: screensize.width*0.02),
+                                    Text("Axel Arigato",style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.w600,color: black),)
+                                  ],
+                                ),
+                                 Row(
+                                  children: [SizedBox(width: screensize.width*0.02),
+                                    SizedBox(width: screensize.width*0.43, child: Text("Clean 90 Triple Sneakers",style: GoogleFonts.poppins(fontSize: 13,fontWeight: FontWeight.w400,color: Colors.grey.shade500),))
+                                  ],
+                                ),
+                                 Row(
+                                  children: [SizedBox(width: screensize.width*0.02),
+                                    Text("\$245",style: GoogleFonts.poppins(fontSize: 14,fontWeight: FontWeight.w700,color: Colors.black),)
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),SizedBox(width: screensize.width*0.015),
+                          Container(
+                            height: screensize.height*0.105,
+                            width: screensize.width*0.12,
+                            // margin: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(15),
+                             color: Colors.white,
+                            ),
+                            child: Center(
+                              child: Container( height: screensize.height*0.05,
+                              width: screensize.width*0.111,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                             color: Colors.black,
+                                ),
+                                child: Image.asset("assets/images/right-arrow.png",color: Colors.white,),
+                              ),
+                            ),
+                          )
+                        ],
                       )
-                    ],
-                  )
-                ]),
+                    ]),
+                  );}
+                ),
               ),
             ],
           ),
