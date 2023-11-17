@@ -29,47 +29,66 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 100,
-            ),
-            tabs(context: context),
-            Expanded(
-              child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemCount: usermodel.products?.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      child: Container(
-                        height: 800,
-                        margin: const EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // Text("${usermodel.products?[index].id}"),
-                            usermodel.products?[index].thumbnail != null
-                                ? Image.network(
-                                    "${usermodel.products?[index].thumbnail}",
-                                    fit: BoxFit.fill,
-                                    height: 170,
-                                    width: 200,
-                                  )
-                                : const CircularProgressIndicator()
-                          ],
+      appBar: AppBar(),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 100,
+          ),
+          tabs(context: context),
+          Text(
+            category.toUpperCase(),
+            style:
+                GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+          Expanded(
+            child: GridView.builder(
+                cacheExtent: 200,
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: .65,
+                    // mainAxisSpacing: 15,
+                    // crossAxisSpacing: 15,
+                    crossAxisCount: 2),
+                itemCount: usermodel.products?.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      usermodel.products?[index].thumbnail != null
+                          ? ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              child: Image.network(
+                                "${usermodel.products?[index].thumbnail}",
+                                fit: BoxFit.fill,
+                                height: 200,
+                                width: 170,
+                              ),
+                            )
+                          : const CircularProgressIndicator(),
+                      ListTile(
+                        title: Center(
+                            child: Text("${usermodel.products?[index].title}",
+                                style: gridTextStyle)),
+                        subtitle: Center(
+                          child: Text(
+                            "${usermodel.products?[index].description}",
+                            style: GoogleFonts.poppins(fontSize: 12),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
-                    );
-                  }),
-            ),
-          ],
-        ),
+                      Text(
+                        "\$${usermodel.products?[index].price.toDouble()}",
+                        style: gridTextStyle,
+                      ),
+                    ],
+                  );
+                }),
+          ),
+        ],
       ),
       bottomNavigationBar: navBar(context: context),
     );
@@ -77,8 +96,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   fetch() async {
     usermodel = await fechfake();
-    print(
-        "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+    print("datafetched");
   }
 
   Widget tabs({
@@ -165,4 +183,4 @@ final stl = GoogleFonts.poppins(
   color: black,
   fontSize: 18,
 );
-
+final gridTextStyle = GoogleFonts.poppins(fontWeight: FontWeight.bold);
