@@ -11,6 +11,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
+ 
+
+
   @override
   Widget build(BuildContext context) {
     var screensize = MediaQuery.of(context).size;
@@ -344,8 +349,10 @@ class _HomePageState extends State<HomePage> {
               text: 'Shoes',
             )
           ]),
-              )
+              ),
+
             ],
+
           ),
         ),
         bottomNavigationBar: navBar(context: context),
