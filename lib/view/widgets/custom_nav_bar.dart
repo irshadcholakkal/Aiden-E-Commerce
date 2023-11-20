@@ -1,11 +1,14 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/images.dart';
 import 'package:aiden/utils/variables.dart';
+import 'package:aiden/view/profile_page/profilepage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 Widget navBar({
   context,
+  int selectedGnav = 0,
 }) {
   return Container(
     decoration: const BoxDecoration(
@@ -22,38 +25,58 @@ Widget navBar({
     height: MediaQuery.of(context).size.height * 0.09,
     width: double.infinity,
     child: GNav(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        tabBorderRadius: 50,
-        padding: const EdgeInsets.all(12),
-        tabs: [
-          GButton(
-            backgroundColor: gnavBGColor,
-            icon: Icons.abc,
-            text: "Home",
-            textStyle: gnavStyle,
-            leading: gnavhomeImage,
-          ),
-          GButton(
-            icon: Icons.abc,
-            text: "Cart",
-            leading: gnavcartImage,
-            backgroundColor: gnavBGColor,
-            textStyle: gnavStyle,
-          ),
-          GButton(
-            icon: Icons.abc,
-            text: "Notification",
-            leading: gnavnotificationImage,
-            backgroundColor: gnavBGColor,
-            textStyle: gnavStyle,
-          ),
-          GButton(
-            icon: Icons.abc,
-            text: "Profile",
-            leading: gnavprofileImage,
-            backgroundColor: gnavBGColor,
-            textStyle: gnavStyle,
-          )
-        ]),
+      selectedIndex: selectedGnav,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      tabBorderRadius: 50,
+      padding: const EdgeInsets.all(12),
+      tabs: [
+        GButton(
+          onPressed: () {
+            selectedGnav = 0;
+          },
+          backgroundColor: gnavBGColor,
+          icon: Icons.abc,
+          text: "Home",
+          textStyle: gnavStyle,
+          leading: gnavhomeImage,
+        ),
+        GButton(
+          onPressed: () {
+            selectedGnav = 1;
+          },
+          icon: Icons.abc,
+          text: "Cart",
+          leading: gnavcartImage,
+          backgroundColor: gnavBGColor,
+          textStyle: gnavStyle,
+        ),
+        GButton(
+          onPressed: () {
+            selectedGnav = 2;
+          },
+          icon: Icons.abc,
+          text: "Notification",
+          leading: gnavnotificationImage,
+          backgroundColor: gnavBGColor,
+          textStyle: gnavStyle,
+        ),
+        GButton(
+          onPressed: () {
+            selectedGnav = 3;
+          },
+          icon: Icons.abc,
+          text: "Profile",
+          leading: gnavprofileImage,
+          backgroundColor: gnavBGColor,
+          textStyle: gnavStyle,
+        )
+      ],
+      onTabChange: (value) {
+        if (selectedGnav == 3) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) =>const Profilepage()));
+        }
+      },
+    ),
   );
 }
