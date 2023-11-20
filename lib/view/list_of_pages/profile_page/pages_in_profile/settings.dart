@@ -1,7 +1,7 @@
 import 'package:aiden/utils/colors.dart';
-import 'package:aiden/view/profile_page/widget/listtile.dart';
-import 'package:aiden/view/profile_page/widget/tabbar.dart';
-import 'package:aiden/view/profile_page/widget/textfieldrow.dart';
+import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
+import 'package:aiden/view/list_of_pages/profile_page/widget/tabbar.dart';
+import 'package:aiden/view/list_of_pages/profile_page/widget/textfieldrow.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

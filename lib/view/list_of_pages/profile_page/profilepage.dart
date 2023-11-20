@@ -1,5 +1,6 @@
 import 'package:aiden/utils/colors.dart';
-import 'package:aiden/view/profile_page/widget/listtile.dart';
+import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
+import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/settings.dart';
 import 'package:aiden/view/widgets/custom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -30,8 +31,12 @@ class _ProfilepageState extends State<Profilepage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(onPressed: () {}, icon: Image.asset("assets/images/backog.png")),
-                      IconButton(onPressed: () {}, icon: Image.asset("assets/images/settingsog.png")),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Image.asset("assets/images/backog.png")),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Image.asset("assets/images/settingsog.png")),
                     ],
                   ),
                 ),
@@ -67,51 +72,33 @@ class _ProfilepageState extends State<Profilepage> {
                       listtile(
                           text: "Personal details",
                           leading: const Icon(Icons.abc),
-                          trailing: Image.asset(
-                            "assets/images/forwardicon.png",
-                            height: 30,
-                            width: 30,
-                          )),
+                          ontap: () {}),
                       listtile(
                           text: "My Orders",
                           leading: const Icon(Icons.abc),
-                          trailing: Image.asset(
-                            "assets/images/forwardicon.png",
-                            height: 30,
-                            width: 30,
-                          )),
+                          ontap: () {}),
                       listtile(
                           text: "My Favourites",
                           leading: const Icon(Icons.abc),
-                          trailing: Image.asset(
-                            "assets/images/forwardicon.png",
-                            height: 30,
-                            width: 30,
-                          )),
+                          ontap: () {}),
                       listtile(
                           text: "Shipping Address",
                           leading: const Icon(Icons.abc),
-                          trailing: Image.asset(
-                            "assets/images/forwardicon.png",
-                            height: 30,
-                            width: 30,
-                          )),
+                          ontap: () {}),
                       listtile(
                           text: "My Card",
                           leading: const Icon(Icons.abc),
-                          trailing: Image.asset(
-                            "assets/images/forwardicon.png",
-                            height: 30,
-                            width: 30,
-                          )),
+                          ontap: () {}),
                       listtile(
-                          text: " Settings",
-                          leading: const Icon(Icons.abc),
-                          trailing: Image.asset(
-                            "assets/images/forwardicon.png",
-                            height: 30,
-                            width: 30,
-                          )),
+                        text: " Settings",
+                        leading: const Icon(Icons.abc),
+                        ontap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Settings()));
+                        },
+                      )
                     ],
                   ),
                 ),

@@ -2,7 +2,7 @@ import 'package:aiden/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget listtile({text, Icon? leading, trailing}) {
+Widget listtile({text, Icon? leading, trailing,void Function()? ontap}) {
   return Padding(
     padding: const EdgeInsets.all(6.0),
     child: ListTile(
@@ -22,7 +22,14 @@ Widget listtile({text, Icon? leading, trailing}) {
           color: black,
         ),
       ),
-      trailing: trailing,
-    ),
+      trailing:  InkWell(
+        onTap: ontap,
+        child: Image.asset(
+                              "assets/images/forwardicon.png",
+                              height: 30,
+                              width: 30,
+                            ),
+      )),
+    
   );
 }

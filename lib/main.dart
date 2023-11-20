@@ -1,5 +1,4 @@
-import 'package:aiden/view/categories_pages/category_paage.dart';
-import 'package:aiden/view/home_page/home_page.dart';
+import 'package:aiden/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +11,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: CategoryPage());
+        debugShowCheckedModeBanner: false, home: WelcomePage());
   }
 }

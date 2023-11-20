@@ -1,7 +1,11 @@
+import 'package:aiden/model/product_models/list_of_product_model.dart';
 import 'package:aiden/utils/colors.dart';
+import 'package:aiden/utils/variables.dart';
+import 'package:aiden/viewmodel/fatch_api.dart';
 import 'package:aiden/view/widgets/custom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:like_button/like_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,10 +15,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
- 
-
+  String categoryName = "Smart Phones";
+  ProductModel usermodel = ProductModel();
+  int selectedIndex = 0;
+  
+  List<dynamic> likedList = [];
+  @override
+  void initState() {
+    fetch().then((v) => setState(() {}));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -320,43 +330,244 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-              ), SizedBox(
+              ),
+              SizedBox(
                 height: screensize.height * 0.01,
               ),
-              const DefaultTabController(
-      length: 4,
-      child: TabBar(
-          labelColor: Colors.white,
-          unselectedLabelColor: black,
-          splashBorderRadius: BorderRadius.all(Radius.circular(100)),
-          splashFactory: NoSplash.splashFactory,
-          indicator: BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: Color.fromARGB(255, 0, 0, 0),
-              borderRadius: BorderRadius.all(Radius.circular(100))),
-          indicatorPadding: EdgeInsets.all(6.5),
-          tabs: [
-            Tab(
-              text: 'Dresses',
-            ),
-            Tab(
-              text: 'Jackets',
-            ),
-            Tab(
-              text: 'Jeans',
-            ),
-            Tab(
-              text: 'Shoes',
-            )
-          ]),
+              SingleChildScrollView(
+                child: DefaultTabController(
+                  initialIndex: selectedIndex,
+                  length: 6,
+                  child: TabBar(
+                      isScrollable: true,
+                      onTap: (value) {
+                        if (value == 0) {
+                          categoryName = "Smart Phones";
+                          category = "smartphones";
+
+                          fetch().then((v) => setState(() {}));
+                        } else if (value == 1) {
+                          category = "laptops";
+
+                          categoryName = "Laptops";
+                          fetch().then((v) => setState(() {}));
+                        } else if (value == 2) {
+                          category = "fragrances";
+
+                          categoryName = "Fragrances";
+                          fetch().then((v) => setState(() {}));
+                        } else if (value == 3) {
+                          category = "skincare";
+
+                          categoryName = "Skin Care";
+                          fetch().then((v) => setState(() {}));
+                        } else if (value == 4) {
+                          category = "groceries";
+
+                          categoryName = "Groceries";
+                          fetch().then((v) => setState(() {}));
+                        } else if (value == 5) {
+                          category = "home-decoration";
+
+                          categoryName = "Home Decoration";
+                          fetch().then((v) => setState(() {}));
+                        }
+                      },
+                      labelColor: Colors.white,
+                      unselectedLabelColor: black,
+                      labelStyle:
+                          GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                      indicator: const BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      // indicatorPadding: const EdgeInsets.all(5),
+                      tabs: [
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            child: Tab(
+                              text: 'Smart Phones',
+                            ),
+                          ),
+                        ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            child: Tab(
+                              text: 'Laptops',
+                            ),
+                          ),
+                        ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            child: Tab(
+                              text: 'Fragrances',
+                            ),
+                          ),
+                        ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            child: Tab(
+                              text: 'Skincare',
+                            ),
+                          ),
+                        ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            child: Tab(
+                              text: 'Groceries',
+                            ),
+                          ),
+                        ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            child: Tab(
+                              text: 'Home Appliances',
+                            ),
+                          ),
+                        ),
+                      ]),
+                ),
               ),
-
+              SizedBox(
+                height: screensize.height * 0.055,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: screensize.width * 0.1,
+                    ),
+                    Text(
+                      categoryName,
+                      style: GoogleFonts.poppins(
+                          fontSize: 22, fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: GridView.builder(
+                    cacheExtent: 200,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: .65,
+                            // mainAxisSpacing: 15,
+                            // crossAxisSpacing: 15,
+                            crossAxisCount: 2),
+                    itemCount: usermodel.products?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          usermodel.products?[index].thumbnail != null
+                              ? Stack(
+                                  alignment: Alignment.topRight,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20)),
+                                      child: Image.network(
+                                        "${usermodel.products?[index].thumbnail}",
+                                        fit: BoxFit.fill,
+                                        height: 200,
+                                        width: 170,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: CircleAvatar(
+                                        radius: 15,
+                                        backgroundColor: black,
+                                        child: LikeButton(
+                                          onTap: (isLiked) {
+                                            print(isLiked);
+                                            if (isLiked == false) {
+                                              likedList.add(usermodel
+                                                  .products?[index].title);
+                                              print(likedList);
+                                            } else {
+                                              likedList.removeLast();
+                                              print(likedList);
+                                            }
+                                            return Future(
+                                                () => isLiked = !isLiked);
+                                          },
+                                          padding:
+                                              const EdgeInsets.only(left: 2),
+                                          size: 20,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              : const CircularProgressIndicator(),
+                          ListTile(
+                            title: Center(
+                                child: Text(
+                                    "${usermodel.products?[index].title}",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: gridTextStyle)),
+                            subtitle: Center(
+                              child: Text(
+                                "${usermodel.products?[index].description}",
+                                style: GoogleFonts.poppins(fontSize: 12),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "\$${usermodel.products?[index].price.toDouble()}",
+                            style: gridTextStyle,
+                          ),
+                        ],
+                      );
+                    }),
+              )
             ],
-
           ),
         ),
-        bottomNavigationBar: navBar(context: context),
+        // bottomNavigationBar: navBar(context: context),
       ),
     );
+  }
+
+  fetch() async {
+    usermodel = await fechfake();
+    print("datafetched");
   }
 }

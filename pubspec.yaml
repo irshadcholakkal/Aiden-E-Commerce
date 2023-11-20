@@ -10,7 +10,6 @@ dependencies:
   dots_indicator: ^3.0.0
   flutter:
     sdk: flutter
-  get: ^4.6.6
   google_fonts: ^6.1.0
   google_nav_bar: ^5.0.6
   http: ^1.1.0

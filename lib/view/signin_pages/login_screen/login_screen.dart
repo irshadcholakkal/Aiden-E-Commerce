@@ -1,9 +1,9 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/images.dart';
-import 'package:aiden/view/forgot_page/forgotpage.dart';
-import 'package:aiden/view/home_page/home_page.dart';
-import 'package:aiden/view/signup_page/signup_page.dart';
-import 'package:aiden/view/startshopping/startingpage.dart';
+import 'package:aiden/view/list_of_pages/home_page.dart';
+import 'package:aiden/view/signin_pages/forgot_page/forgotpage.dart';
+import 'package:aiden/view/signin_pages/signup_page/signup_page.dart';
+import 'package:aiden/view/signin_pages/startshopping/startingpage.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
