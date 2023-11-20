@@ -14,9 +14,10 @@ class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
+      body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
+        color: Colors.white,
         child: SafeArea(
           child: Column(
             children: [
@@ -29,8 +30,8 @@ class _ProfilepageState extends State<Profilepage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    //   IconButton(onPressed: () {}, icon: Image.asset("assets/images/backog.png")),
-                    //   IconButton(onPressed: () {}, icon: Image.asset("assets/images/settingsog.png"))
+                      IconButton(onPressed: () {}, icon: Image.asset("assets/images/backog.png")),
+                      IconButton(onPressed: () {}, icon: Image.asset("assets/images/settingsog.png")),
                     ],
                   ),
                 ),
