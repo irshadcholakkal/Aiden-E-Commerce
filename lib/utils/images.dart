@@ -23,8 +23,8 @@ ClipRRect thirdSlideImage = ClipRRect(
   borderRadius: const BorderRadius.all(Radius.circular(20)),
   child: Image.asset("assets/images/third demo.jpg",fit: BoxFit.fill,));
 List <Image>cartImages = [
-  Image.asset("assets/images/produt 1.jpg",fit: BoxFit.cover,),
+  Image.asset("assets/images/produt.jpg",fit: BoxFit.cover,),
   Image.asset("assets/images/product 1.2.jpg",fit: BoxFit.cover,),
-  Image.asset("assets/images/produt 1.jpg",fit: BoxFit.cover),
+  Image.asset("assets/images/produt.jpg",fit: BoxFit.cover),
  
 ];

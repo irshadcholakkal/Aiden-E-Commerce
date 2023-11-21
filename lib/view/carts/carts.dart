@@ -19,21 +19,24 @@ class _CartPageState extends State<CartPage> {
   int currentPage = 0;
   PageController controller = PageController();
   int indexOfSizes = 0;
- final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
+
     _scrollController.addListener(checkScrollPosition);
   }
 
-void checkScrollPosition() {
+  void checkScrollPosition() {
     setState(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.minScrollExtent) {
-      }
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.hasClients &&
+          _scrollController.position.maxScrollExtent > 4 &&
+          _scrollController.position.minScrollExtent < 4) {
+        if (_scrollController.position.pixels <=
+            _scrollController.position.minScrollExtent) {}
+        if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent) {}
       }
     });
   }
@@ -109,21 +112,19 @@ void checkScrollPosition() {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        height: hight! * 0.2,
-                        width: width! * 0.6,
-                        child: Column(
+              child: Container(
+                margin: EdgeInsets.all(17),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              height: hight! * 0.02,
-                            ),
+                           
                             cartPageProductName,
                             cartPageProutSubName,
                             Row(
@@ -142,66 +143,82 @@ void checkScrollPosition() {
                             )
                           ],
                         ),
-                      ),
-                      Container(
-                        height: hight! * 0.035,
-                        width: width! * 0.2,
-                        decoration: const BoxDecoration(
-                            color: grey,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [miniusButton, number, additionButton],
-                        ),
-                      )
-                    ],
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: hight! * 0.07,
-                          width: width! * 0.63,
-                          child: ListView.builder(
-                            controller: _scrollController,
-                            itemCount: dressSizes.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              indexOfSizes = index;
-                              return SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Container(
-                                    margin: const EdgeInsets.all(7),
-                                    height: hight! * 0.2,
-                                    width: width! * 0.12,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: grey),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      dressSizes[index],
-                                      style: GoogleFonts.rubik(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500),
-                                    ))),
-                              );
-                            },
+                        Container(
+                          height: hight! * 0.035,
+                          width: width! * 0.2,
+                          decoration: const BoxDecoration(
+                              color: grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [miniusButton, number, additionButton],
                           ),
-                        ),
-                         if (_scrollController.position.pixels<=_scrollController.position.maxScrollExtent-2)
-                           const Icon(Icons.arrow_forward_ios_rounded, size: 13),
-                        if (_scrollController.position.pixels==_scrollController.position.maxScrollExtent)
-                           const Icon(Icons.arrow_back_ios_rounded, size: 13),
-
-                       
+                        )
                       ],
                     ),
-                  )
-                ],
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: hight! * 0.07,
+                            width: width! * 0.63,
+                            child: ListView.builder(
+                              controller: _scrollController,
+                              itemCount: dressSizes.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                indexOfSizes = index;
+                                return SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Container(
+                                      margin: const EdgeInsets.all(7),
+                                      height: hight! * 0.2,
+                                      width: width! * 0.12,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: grey),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        dressSizes[index],
+                                        style: GoogleFonts.rubik(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ))),
+                                );
+                              },
+                            ),
+                          ),
+                          if (_scrollController.hasClients &&
+                              _scrollController.position.pixels <
+                                  _scrollController.position.maxScrollExtent)
+                            const Icon(Icons.arrow_forward_ios_rounded, size: 13),
+                          if (_scrollController.hasClients &&
+                              _scrollController.position.pixels ==
+                                  _scrollController.position.maxScrollExtent)
+                            const Icon(Icons.arrow_back_ios_rounded, size: 13),
+                        ],
+                      ),
+                    ),
+                    // SizedBox(
+                    //   height: hight! * 0.01,
+                    // ),
+                    Text(
+                      "Description",
+                      style: GoogleFonts.rubik(
+                          fontSize: 25, fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                    
+                      width: double.infinity,
+                      height: hight!*0.15,
+                      child: SingleChildScrollView(child: Text("The Clean 90 Triple sneaker is defined by contrasting panels at the heel tab, tongue and toe. This pair has been handmade in Portugal from LWG-certified leather and set on rubber cup-soles that are stitched and glued to the uppers for durability. Discreet gold logos accent the sides.",style:  GoogleFonts.rubik(fontSize: 10.5,fontWeight: FontWeight.w200))),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
