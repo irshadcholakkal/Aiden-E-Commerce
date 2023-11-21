@@ -2,6 +2,7 @@ import 'package:aiden/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:iconsax/iconsax.dart';
+
 import 'package:like_button/like_button.dart';
 
 Widget ratingBar({required double rating,required double minirating,required double size}){
