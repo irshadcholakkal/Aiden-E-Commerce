@@ -1,5 +1,6 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/view/list_of_pages/home_page.dart';
+import 'package:aiden/view/welcome_page.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -55,7 +56,7 @@ class _StartingpageState extends State<Startingpage> {
                     bgColor: MaterialStatePropertyAll(black),
                     onpressed: () {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                          MaterialPageRoute(builder: (context) => WelcomePage()));
                     }),
               )
             ],
