@@ -28,3 +28,28 @@ List <Image>cartImages = [
   Image.asset("assets/images/produt.jpg",fit: BoxFit.cover),
  
 ];
+//   child: Image.asset(
+//     "assets/images/third demo.jpg",
+//     fit: BoxFit.fill,
+//   ),
+// );
+Image gnavprofileImage = Image.asset(
+  "assets/images/profile.png",
+  width: 20,
+  height: 20,
+);
+Image gnavhomeImage = Image.asset(
+  "assets/images/home.png",
+  width: 20,
+  height: 20,
+);
+Image gnavnotificationImage = Image.asset(
+  "assets/images/notification.png",
+  width: 20,
+  height: 20,
+);
+Image gnavcartImage = Image.asset(
+  "assets/images/cart.png",
+  width: 20,
+  height: 20,
+);

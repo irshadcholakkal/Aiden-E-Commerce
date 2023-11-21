@@ -1,13 +1,11 @@
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
-import 'package:aiden/view/login_screen/login_screen.dart';
-import 'package:aiden/view/signup_page/signup_page.dart';
+import 'package:aiden/view/signin_pages/login_screen/login_screen.dart';
+import 'package:aiden/view/signin_pages/signup_page/signup_page.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
-import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:aiden/utils/images.dart';
-import 'package:lottie/lottie.dart';
 
 class ContentsOfSplashScreen extends StatefulWidget {
   const ContentsOfSplashScreen({super.key});
@@ -176,7 +174,7 @@ Widget thirdSlide(BuildContext context) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SignupPage(),
+                builder: (context) =>const SignupPage(),
               ));
           // Please change the route from here //
         },

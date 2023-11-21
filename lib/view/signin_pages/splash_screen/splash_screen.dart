@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:aiden/view/splash_screen/splash_slide_page.dart';
+import 'package:aiden/view/signin_pages/splash_screen/splash_slide_page.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
