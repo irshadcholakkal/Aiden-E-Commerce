@@ -1,4 +1,5 @@
 import 'package:aiden/utils/colors.dart';
+import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
 import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/settings.dart';
 import 'package:aiden/view/widgets/custom_nav_bar.dart';
@@ -80,7 +81,12 @@ class _ProfilepageState extends State<Profilepage> {
                       listtile(
                           text: "My Favourites",
                           leading: const Icon(Icons.abc),
-                          ontap: () {}),
+                          ontap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FavPage()));
+                          }),
                       listtile(
                           text: "Shipping Address",
                           leading: const Icon(Icons.abc),

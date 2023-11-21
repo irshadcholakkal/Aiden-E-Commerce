@@ -1,6 +1,8 @@
+import 'package:aiden/model/fav_model.dart';
 import 'package:aiden/model/product_models/list_of_product_model.dart';
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/variables.dart';
+import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/viewmodel/fatch_api.dart';
 import 'package:aiden/view/widgets/custom_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +20,8 @@ class _HomePageState extends State<HomePage> {
   String categoryName = "Smart Phones";
   ProductModel usermodel = ProductModel();
   int selectedIndex = 0;
-  
-  List<dynamic> likedList = [];
+
+  // List<dynamic> likedList = [];
   @override
   void initState() {
     fetch().then((v) => setState(() {}));
@@ -517,12 +519,18 @@ class _HomePageState extends State<HomePage> {
                                           onTap: (isLiked) {
                                             print(isLiked);
                                             if (isLiked == false) {
-                                              likedList.add(usermodel
-                                                  .products?[index].title);
-                                              print(likedList);
+                                              likedListNotify.value.add(FavModel(
+                                                  image: usermodel
+                                                      .products?[index].images[0],
+                                                  productNmae: usermodel
+                                                      .products?[index].title,
+                                                  discreption: usermodel
+                                                      .products?[index]
+                                                      .description));
+                                              print(likedListNotify);
                                             } else {
-                                              likedList.removeLast();
-                                              print(likedList);
+                                              likedListNotify.value.removeLast();
+                                              print(likedListNotify);
                                             }
                                             return Future(
                                                 () => isLiked = !isLiked);
