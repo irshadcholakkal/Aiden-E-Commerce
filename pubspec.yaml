@@ -10,11 +10,14 @@ dependencies:
   dots_indicator: ^3.0.0
   flutter:
     sdk: flutter
+  flutter_rating_bar: ^4.0.1
   google_fonts: ^6.1.0
   google_nav_bar: ^5.0.6
   http: ^1.1.0
+  iconsax: ^0.0.8
   like_button: ^2.0.5
   lottie: ^2.7.0
+  smooth_page_indicator: ^1.1.0
   
 dev_dependencies:
   flutter_test:
