@@ -1,7 +1,7 @@
 import 'package:aiden/utils/colors.dart';
+import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/settings.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
-import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/settings.dart';
 import 'package:flutter/material.dart';
 
 class Profilepage extends StatefulWidget {
@@ -26,7 +26,8 @@ class _ProfilepageState extends State<Profilepage> {
                 Container(
                   height: 60,
                   width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(color: white),
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 243, 243, 243)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
@@ -34,7 +35,9 @@ class _ProfilepageState extends State<Profilepage> {
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: Image.asset("assets/images/backog.png")),
+                            icon: Image.asset(
+                              "assets/images/backog.png",
+                            )),
                         IconButton(
                             onPressed: () {},
                             icon: Image.asset("assets/images/settingsog.png")),
@@ -52,10 +55,12 @@ class _ProfilepageState extends State<Profilepage> {
                       decoration: BoxDecoration(
                           border: Border.all(color: grey),
                           borderRadius: BorderRadius.circular(20)),
-                      child: const ListTile(
-                        leading: SizedBox(),
-                        title: Text("name"),
-                        subtitle: Text("email"),
+                      child: ListTile(
+                        leading: SizedBox(
+                          child: Image.asset("assets/images/hacker_icon.png"),
+                        ),
+                        title: const Text("name"),
+                        subtitle: const Text("email"),
                       )),
                 ),
                 const SizedBox(
@@ -72,37 +77,52 @@ class _ProfilepageState extends State<Profilepage> {
                       children: [
                         listtile(
                             text: "Personal details",
-                            leading: const Icon(Icons.abc),
+                            leading: const Icon(
+                              Icons.person,
+                              color: Colors.black,
+                            ),
                             ontap: () {}),
                         listtile(
                             text: "My Orders",
-                            leading: const Icon(Icons.abc),
+                            leading: const Icon(
+                              Icons.shopping_bag,
+                              color: Colors.black,
+                            ),
                             ontap: () {}),
                         listtile(
                             text: "My Favourites",
-                            leading: const Icon(Icons.abc),
+                            leading:const Icon(Icons.heart_broken,color: black,),
                             ontap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => FavPage()));
+                                      builder: (context) => const FavPage()));
                             }),
                         listtile(
                             text: "Shipping Address",
-                            leading: const Icon(Icons.abc),
+                            leading: const Icon(
+                              Icons.fire_truck,
+                              color: Colors.black,
+                            ),
                             ontap: () {}),
                         listtile(
                             text: "My Card",
-                            leading: const Icon(Icons.abc),
+                            leading: const Icon(
+                              Icons.credit_card,
+                              color: Colors.black,
+                            ),
                             ontap: () {}),
                         listtile(
                           text: " Settings",
-                          leading: const Icon(Icons.abc),
+                          leading: const Icon(
+                            Icons.settings,
+                            color: Colors.black,
+                          ),
                           ontap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Settings()));
+                                    builder: (context) => const Settings()));
                           },
                         )
                       ],
@@ -120,21 +140,36 @@ class _ProfilepageState extends State<Profilepage> {
                       children: [
                         listtile(
                             text: " FAQs",
-                            leading: const Icon(Icons.abc),
+                            leading: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset("assets/images/faqs.jpg"),
+                            ),
                             ontap: () {}),
                         listtile(
                             text: "Privacy Policy",
-                            leading: const Icon(Icons.abc),
+                            leading: const Icon(
+                              Icons.policy,
+                              color: Colors.black,
+                            ),
                             ontap: () {}),
                         listtile(
                             text: "Documents",
-                            leading: const Icon(Icons.abc),
+                            leading: const Icon(
+                              Icons.document_scanner,
+                              color: Colors.black,
+                            ),
+                            ontap: () {}),
+                        listtile(
+                            text: "Help",
+                            leading: const Icon(
+                              Icons.help,
+                              color: Colors.black,
+                            ),
                             ontap: () {}),
                       ],
                     ),
                   ),
                 ),
-                
               ],
             ),
           ),

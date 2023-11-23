@@ -4,7 +4,6 @@ import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/variables.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/viewmodel/fatch_api.dart';
-import 'package:aiden/view/widgets/custom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
