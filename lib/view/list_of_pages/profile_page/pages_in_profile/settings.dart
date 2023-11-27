@@ -31,7 +31,7 @@ class _SettingsState extends State<Settings> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -49,7 +49,8 @@ class _SettingsState extends State<Settings> {
                       fontSize: 14, fontWeight: FontWeight.w800, color: black),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 10,
+                  top: 10),
                   child: Container(
                     child: Column(
                       children: [
@@ -151,7 +152,7 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(7.0),
                   child: customeButton(
                     text: "Logout",
                     context: context,

@@ -2,6 +2,7 @@ import 'package:aiden/utils/colors.dart';
 import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/settings.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
+import 'package:aiden/view/welcome_page.dart';
 import 'package:flutter/material.dart';
 
 class Profilepage extends StatefulWidget {
@@ -34,13 +35,23 @@ class _ProfilepageState extends State<Profilepage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WelcomePage()));
+                            },
                             icon: Image.asset(
-                              "assets/images/backog.png",
+                              "assets/images/backword.jpg",
                             )),
                         IconButton(
-                            onPressed: () {},
-                            icon: Image.asset("assets/images/settingsog.png")),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Settings()));
+                            },
+                            icon:Icon(Icons.settings) ),
                       ],
                     ),
                   ),
@@ -91,7 +102,10 @@ class _ProfilepageState extends State<Profilepage> {
                             ontap: () {}),
                         listtile(
                             text: "My Favourites",
-                            leading:const Icon(Icons.heart_broken,color: black,),
+                            leading: const Icon(
+                              Icons.heart_broken,
+                              color: black,
+                            ),
                             ontap: () {
                               Navigator.push(
                                   context,
