@@ -39,7 +39,7 @@ class _ProfilepageState extends State<Profilepage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => WelcomePage()));
+                                      builder: (context) => const WelcomePage()));
                             },
                             icon: Image.asset(
                               "assets/images/backword.jpg",
@@ -49,9 +49,9 @@ class _ProfilepageState extends State<Profilepage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Settings()));
+                                      builder: (context) => const Settings()));
                             },
-                            icon:Icon(Icons.settings) ),
+                            icon:const Icon(Icons.settings,color: black,) ),
                       ],
                     ),
                   ),

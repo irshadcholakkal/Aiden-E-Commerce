@@ -34,7 +34,7 @@ class _CartpageState extends State<Cartpage> {
               children: [
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Text(
@@ -72,15 +72,16 @@ class _CartpageState extends State<Cartpage> {
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                        color:
-                                            Color.fromARGB(255, 198, 197, 197),
+                                        color: const Color.fromARGB(
+                                            255, 198, 197, 197),
                                         width: 2)),
                                 child: Text(
                                   "Ongoing",
                                   style: TextStyle(
                                       color: _currentIndex == 0
                                           ? Colors.white
-                                          : Color.fromARGB(255, 145, 144, 144),
+                                          : const Color.fromARGB(
+                                              255, 145, 144, 144),
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16),
                                 ),
@@ -102,15 +103,16 @@ class _CartpageState extends State<Cartpage> {
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                        color:
-                                            Color.fromARGB(255, 198, 197, 197),
+                                        color: const Color.fromARGB(
+                                            255, 198, 197, 197),
                                         width: 2)),
                                 child: Text(
                                   "Completed",
                                   style: TextStyle(
                                       color: _currentIndex == 1
                                           ? Colors.white
-                                          : Color.fromARGB(255, 145, 144, 144),
+                                          : const Color.fromARGB(
+                                              255, 145, 144, 144),
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16),
                                 ),
@@ -124,6 +126,192 @@ class _CartpageState extends State<Cartpage> {
                       width: 20,
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(10.0),
+                //   child: Container(
+                //     height: 150,
+                //     width: 450,
+                //     decoration: BoxDecoration(
+                //         color: Colors.white,
+                //         boxShadow: const [
+                //           BoxShadow(
+                //               color: Color.fromARGB(255, 223, 221, 221),
+                //               spreadRadius: 5,
+                //               blurRadius: 10,
+                //               offset: Offset(0, 2)),
+                //         ],
+                //         borderRadius: BorderRadius.circular(20)),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: Container(
+                //               decoration: const BoxDecoration(),
+                //               height: 200,
+                //               width: 288,
+                //               child: Row(
+                //                 children: [
+                //                   Image.asset(
+                //                     "assets/images/prod.jpg",
+                //                     height: 200,
+                //                     width: 80,
+                //                   ),
+                //                   const SizedBox(
+                //                     width: 15,
+                //                   ),
+                //                   const Padding(
+                //                     padding: EdgeInsets.all(8.0),
+                //                     child: Column(
+                //                       crossAxisAlignment:
+                //                           CrossAxisAlignment.start,
+                //                       children: [
+                //                         Text(
+                //                           "Nike shoe",
+                //                           style: TextStyle(
+                //                               fontSize: 18,
+                //                               color: Colors.black,
+                //                               fontWeight: FontWeight.bold),
+                //                         ),
+                //                         Text("Classic lace snaeakers",
+                //                             style: TextStyle(
+                //                                 fontSize: 16,
+                //                                 color: Colors.grey,
+                //                                 fontWeight: FontWeight.w600)),
+                //                         Text("Quality  : 2 ",
+                //                             style: TextStyle(
+                //                                 fontSize: 16,
+                //                                 color: Colors.grey,
+                //                                 fontWeight: FontWeight.w600)),
+                //                         Text("Size   : 10",
+                //                             style: TextStyle(
+                //                                 fontSize: 16,
+                //                                 color: Colors.grey,
+                //                                 fontWeight: FontWeight.w600)),
+                //                         Text("Color  : white",
+                //                             style: TextStyle(
+                //                                 fontSize: 16,
+                //                                 color: Colors.grey,
+                //                                 fontWeight: FontWeight.w600)),
+                //                       ],
+                //                     ),
+                //                   ),
+                //                 ],
+                //               )),
+                //         ),
+                //         const Padding(
+                //           padding: EdgeInsets.all(8.0),
+                //           child: Text(
+                //             "\$120",
+                //             style: TextStyle(
+                //               fontSize: 22,
+                //               fontWeight: FontWeight.bold,
+                //             ),
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
+
+                
+                Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (BuildContext context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 10,right: 10,left: 10,bottom: 10),
+                        child: Container(
+                          height: 150,
+                          width: 450,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Color.fromARGB(255, 236, 236, 236),
+                                    spreadRadius: 5,
+                                    blurRadius: 10,
+                                    offset: Offset(7, 5)),
+                              ],
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                    decoration: const BoxDecoration(),
+                                    height: 200,
+                                    width: 288,
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/prod.jpg",
+                                          height: 200,
+                                          width: 80,
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Nike shoe",
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              Text("Classic lace snaeakers",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey,
+                                                      fontWeight: FontWeight.w600)),
+                                              Text("Quality  : 2 ",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey,
+                                                      fontWeight: FontWeight.w600)),
+                                              Text("Size   : 10",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey,
+                                                      fontWeight: FontWeight.w600)),
+                                              Text("Color  : white",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey,
+                                                      fontWeight: FontWeight.w600)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "\$120",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    itemCount: 2,
+                  ),
                 ),
               ],
             ),
