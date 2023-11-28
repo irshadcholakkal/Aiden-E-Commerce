@@ -3,19 +3,21 @@ import 'package:aiden/utils/icons.dart';
 import 'package:aiden/utils/images.dart';
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
+import 'package:aiden/view/widgets/animated_button.dart';
+import 'package:aiden/view/widgets/counter.dart';
 import 'package:aiden/view/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+class ProductPage extends StatefulWidget {
+  const ProductPage({super.key});
 
   @override
-  State<CartPage> createState() => _CartPageState();
+  State<ProductPage> createState() => _ProductPageState();
 }
 
-class _CartPageState extends State<CartPage> {
+class _ProductPageState extends State<ProductPage> {
   int currentPage = 0;
   PageController controller = PageController();
   int indexOfSizes = 0;
@@ -113,7 +115,7 @@ class _CartPageState extends State<CartPage> {
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               child: Container(
-                margin: EdgeInsets.all(17),
+                margin: const EdgeInsets.all(17),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -125,8 +127,8 @@ class _CartPageState extends State<CartPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                            
-                            cartPageProductName,
-                            cartPageProutSubName,
+                            ProductPageProductName,
+                            ProductPageProutSubName,
                             Row(
                               children: [
                                 ratingBar(rating: 3.5, minirating: 0, size: 15),
@@ -143,19 +145,7 @@ class _CartPageState extends State<CartPage> {
                             )
                           ],
                         ),
-                        Container(
-                          height: hight! * 0.035,
-                          width: width! * 0.2,
-                          decoration: const BoxDecoration(
-                              color: grey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [miniusButton, number, additionButton],
-                          ),
-                        )
+                       Counter()
                       ],
                     ),
                     Align(
@@ -171,24 +161,21 @@ class _CartPageState extends State<CartPage> {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 indexOfSizes = index;
-                                return SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Container(
-                                      margin: const EdgeInsets.all(7),
-                                      height: hight! * 0.2,
-                                      width: width! * 0.12,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: grey),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        dressSizes[index],
-                                        style: GoogleFonts.rubik(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500),
-                                      ))),
-                                );
+                                return Container(
+                                    margin: const EdgeInsets.all(7),
+                                    height: hight! * 0.2,
+                                    width: width! * 0.12,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: grey),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      dressSizes[index],
+                                      style: GoogleFonts.rubik(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500),
+                                    )));
                               },
                             ),
                           ),
@@ -215,7 +202,28 @@ class _CartPageState extends State<CartPage> {
                     
                       width: double.infinity,
                       height: hight!*0.15,
-                      child: SingleChildScrollView(child: Text("The Clean 90 Triple sneaker is defined by contrasting panels at the heel tab, tongue and toe. This pair has been handmade in Portugal from LWG-certified leather and set on rubber cup-soles that are stitched and glued to the uppers for durability. Discreet gold logos accent the sides.",style:  GoogleFonts.rubik(fontSize: 10.5,fontWeight: FontWeight.w200))),
+                      child: SingleChildScrollView(child:Description
+                       ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            width: width!*0.3,
+                            height: hight!*0.1,
+                            
+                            child:Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Total Price",style: GoogleFonts.rubik(fontSize: 10,fontWeight: FontWeight.w200),),
+                                Price
+                              ],
+                            ) ,
+                          ),
+                         BouncingButton(onTap: (){})
+                        ],
+                      ),
                     )
                   ],
                 ),
