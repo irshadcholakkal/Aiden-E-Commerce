@@ -1,3 +1,4 @@
+import 'package:aiden/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,10 +28,10 @@ Text termsAndCondition = Text(
   ),
 );
 
-Text cartPageProductName =  Text("Alex Arigato",style: GoogleFonts.rubik(fontSize: 25,fontWeight: FontWeight.w500),);
-Text cartPageProutSubName=  Text("Clean 90 triale",style: GoogleFonts.rubik(fontSize: 15,fontWeight: FontWeight.w200),);
+Text ProductPageProductName =  Text("Alex Arigato",style: GoogleFonts.rubik(fontSize: 25,fontWeight: FontWeight.w500),);
+Text ProductPageProutSubName=  Text("Clean 90 triale",style: GoogleFonts.rubik(fontSize: 15,fontWeight: FontWeight.w200),);
 Text numberOfReviews = Text("(${"320"}Review)",style:  GoogleFonts.rubik(fontSize: 10,fontWeight: FontWeight.w200),);
-Text miniusButton =Text("+",style: TextStyle(fontSize: 18),);
-Text number =Text("1",style: TextStyle( fontWeight: FontWeight.w500,fontSize: 15));
-Text additionButton = Text("-", style: TextStyle(fontSize: 22));
 
+Text Description = Text("The Clean 90 Triple sneaker is defined by contrasting panels at the heel tab, tongue and toe. This pair has been handmade in Portugal from LWG-certified leather and set on rubber cup-soles that are stitched and glued to the uppers for durability. Discreet gold logos accent the sides.",style:  GoogleFonts.rubik(fontSize: 10.5,fontWeight: FontWeight.w200));
+Text Price= Text("₹${230}",style: GoogleFonts.rubik(fontSize: 25,fontWeight: FontWeight.w500),);
+Text addtocart=Text("Add to cart",style: GoogleFonts.rubik(fontSize: 20,fontWeight: FontWeight.w500,color: white),);
