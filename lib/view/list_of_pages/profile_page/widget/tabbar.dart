@@ -63,7 +63,7 @@ class _TabbarState extends State<Tabbar> {
             ),
           ),
           const SizedBox(
-            width: 25,
+            width: 20,
           ),
           Expanded(
             flex: 1,

@@ -23,6 +23,7 @@ class Fieldrow extends StatelessWidget {
           ),
           Expanded(
             child: SizedBox(width: 100,
+            height: 40,
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 style: GoogleFonts.poppins(

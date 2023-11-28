@@ -38,12 +38,16 @@ class _StartingpageState extends State<Startingpage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 30,right: 30,top: 10),
-                      child: Text(
-                        "You have succesfully registered in\n    our app amd start working in it",
-                        style: GoogleFonts.poppins(
-                            color: Colors.grey,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
+                      child: SizedBox(
+                        child: Center(
+                          child: Text(
+                            "You have succesfully registered in our app and start working in it",
+                            style: GoogleFonts.poppins(
+                                color: Colors.grey,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
                       ),
                     )
                   ],
