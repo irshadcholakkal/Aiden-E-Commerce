@@ -126,7 +126,6 @@ class _ProductPageState extends State<ProductPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                           
                             ProductPageProductName,
                             ProductPageProutSubName,
                             Row(
@@ -145,7 +144,9 @@ class _ProductPageState extends State<ProductPage> {
                             )
                           ],
                         ),
-                       Counter()
+                        Counter(
+                          c: Colors.grey.shade400,
+                        )
                       ],
                     ),
                     Align(
@@ -182,7 +183,8 @@ class _ProductPageState extends State<ProductPage> {
                           if (_scrollController.hasClients &&
                               _scrollController.position.pixels <
                                   _scrollController.position.maxScrollExtent)
-                            const Icon(Icons.arrow_forward_ios_rounded, size: 13),
+                            const Icon(Icons.arrow_forward_ios_rounded,
+                                size: 13),
                           if (_scrollController.hasClients &&
                               _scrollController.position.pixels ==
                                   _scrollController.position.maxScrollExtent)
@@ -199,29 +201,31 @@ class _ProductPageState extends State<ProductPage> {
                           fontSize: 25, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
-                    
                       width: double.infinity,
-                      height: hight!*0.15,
-                      child: SingleChildScrollView(child:Description
-                       ),
+                      height: hight! * 0.15,
+                      child: SingleChildScrollView(child: Description),
                     ),
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           SizedBox(
-                            width: width!*0.3,
-                            height: hight!*0.1,
-                            
-                            child:Column(
+                            width: width! * 0.3,
+                            height: hight! * 0.1,
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Total Price",style: GoogleFonts.rubik(fontSize: 10,fontWeight: FontWeight.w200),),
+                                Text(
+                                  "Total Price",
+                                  style: GoogleFonts.rubik(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w200),
+                                ),
                                 Price
                               ],
-                            ) ,
+                            ),
                           ),
-                         BouncingButton(onTap: (){})
+                          BouncingButton(onTap: () {})
                         ],
                       ),
                     )

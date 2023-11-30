@@ -1,7 +1,7 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/utils/images.dart';
 import 'package:aiden/utils/variables.dart';
-import 'package:aiden/view/add_cart/cartpage.dart';
+import 'package:aiden/view/list_of_pages/add_cart/cartpage.dart';
 import 'package:aiden/view/list_of_pages/home_page.dart';
 import 'package:aiden/view/list_of_pages/profile_page/profilepage.dart';
 import 'package:aiden/view/widgets/custom_nav_bar.dart';

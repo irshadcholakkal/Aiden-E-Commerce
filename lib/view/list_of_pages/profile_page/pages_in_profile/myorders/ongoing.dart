@@ -30,57 +30,53 @@ Widget Ongoing() {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                          decoration: const BoxDecoration(),
-                          height: 200,
-                          width: 288,
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/images/prod.jpg",
-                                height: 200,
-                                width: 80,
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Nike shoe",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text("Classic lace snaeakers",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w600)),
-                                    Text("Quality  : 2 ",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w600)),
-                                    Text("Size   : 10",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w600)),
-                                    Text("Color  : white",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w600)),
-                                  ],
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/prod.jpg",
+                            height: 200,
+                            width: 80,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Nike shoe",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                            ],
-                          )),
+                                Text("Classic lace snaeakers",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w600)),
+                                Text("Quality  : 2 ",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w600)),
+                                Text("Size   : 10",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w600)),
+                                Text("Color  : white",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w600)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.all(8.0),

@@ -1,4 +1,5 @@
 import 'package:aiden/utils/colors.dart';
+import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/myorders/Myorder.dart';
 import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/settings.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
@@ -99,7 +100,11 @@ class _ProfilepageState extends State<Profilepage> {
                               Icons.shopping_bag,
                               color: Colors.black,
                             ),
-                            ontap: () {}),
+                            ontap: () { Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Myorder()));
+                                      }),
                         listtile(
                             text: "My Favourites",
                             leading: const Icon(

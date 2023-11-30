@@ -1,6 +1,7 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/myorders/completed.dart';
 import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/myorders/ongoing.dart';
+import 'package:aiden/view/list_of_pages/profile_page/profilepage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,7 +23,12 @@ class _MyorderState extends State<Myorder> {
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Profilepage()));
+                },
                 icon: Image.asset(
                   "assets/images/backword.jpg",
                 )),

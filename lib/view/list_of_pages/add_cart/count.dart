@@ -1,16 +1,18 @@
 import 'package:aiden/utils/variables.dart';
 import 'package:flutter/material.dart';
 
-class Counter extends StatefulWidget {
-  Color? c;
-  Counter({super.key, this.c});
+class Counters extends StatefulWidget {
+  final void zerohap;
+  Counters({super.key, this.zerohap});
 
   @override
-  State<Counter> createState() => _CounterState();
+  State<Counters> createState() => _CounterState();
 }
 
-class _CounterState extends State<Counter> {
-  int counter = 1;
+class _CounterState extends State<Counters> {
+  // int count = counter-1;
+
+  int counter =  1;
 
   void addition() {
     setState(() {
@@ -23,6 +25,12 @@ class _CounterState extends State<Counter> {
       if (counter > 1) {
         counter--;
       }
+      if (counter == 0) {
+        widget.zerohap;
+      }
+      // if (counter == 0) {
+      //   widget.onDelete;
+      // }
     });
   }
 
@@ -34,7 +42,7 @@ class _CounterState extends State<Counter> {
       height: hight! * 0.038,
       width: width! * 0.21,
       decoration: BoxDecoration(
-          color: widget.c,
+          color: const Color.fromARGB(255, 223, 222, 222),
           borderRadius: const BorderRadius.all(Radius.circular(15))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
