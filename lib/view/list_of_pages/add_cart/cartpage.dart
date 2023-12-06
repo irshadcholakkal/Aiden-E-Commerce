@@ -1,9 +1,8 @@
 import 'package:aiden/utils/colors.dart';
 import 'package:aiden/view/list_of_pages/add_cart/count.dart';
-import 'package:aiden/view/widgets/counter.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Cartpage extends StatefulWidget {
   const Cartpage({super.key});
@@ -13,8 +12,6 @@ class Cartpage extends StatefulWidget {
 }
 
 class _MyorderState extends State<Cartpage> {
-  
-
   List<String> cartItems = ["Item 1", "Item 2"];
   // List<int> counts = [1, 1];
 
@@ -25,6 +22,8 @@ class _MyorderState extends State<Cartpage> {
   //   });
   // }
   Widget build(BuildContext context) {
+    var screensize = MediaQuery.of(context).size;
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -40,8 +39,8 @@ class _MyorderState extends State<Cartpage> {
         ),
         body: SafeArea(
           child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: screensize.height,
+            width: screensize.width,
             decoration: const BoxDecoration(color: Colors.white),
             child: Column(children: [
               Row(
@@ -60,8 +59,8 @@ class _MyorderState extends State<Cartpage> {
                   const SizedBox()
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: screensize.height * .025,
               ),
               Expanded(
                 child: ListView.builder(
@@ -91,7 +90,8 @@ class _MyorderState extends State<Cartpage> {
                               ],
                             ),
                             child: Container(
-                              height: 150,
+                              height: screensize.height * 0.18,
+                              width: screensize.width * 1,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   boxShadow: const [
@@ -114,16 +114,16 @@ class _MyorderState extends State<Cartpage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
-                                          height: 200,
-                                          width: 80,
+                                          height: screensize.height * .15,
+                                          width: screensize.width * 0.2,
                                           child: Image.asset(
                                             "assets/images/prod.jpg",
-                                            height: 200,
-                                            width: 80,
+                                            // height: 200,
+                                            // width: 80,
                                           ),
                                         ),
-                                        const SizedBox(
-                                          width: 15,
+                                        SizedBox(
+                                          width: screensize.height * .025,
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -147,8 +147,8 @@ class _MyorderState extends State<Cartpage> {
                                                     fontWeight:
                                                         FontWeight.w600),
                                               ),
-                                              const SizedBox(
-                                                height: 30,
+                                              SizedBox(
+                                                height: screensize.height * .04,
                                               ),
                                               Row(
                                                 mainAxisAlignment:
@@ -163,14 +163,15 @@ class _MyorderState extends State<Cartpage> {
                                                           FontWeight.w900,
                                                     ),
                                                   ),
-                                                  const SizedBox(
-                                                    width: 100,
+                                                  SizedBox(
+                                                    width:
+                                                        screensize.height * .12,
                                                   ),
                                                   Counters(
-                                                    // zerohap: () =>
-                                                    //   onDelete(index)
-                                                    
-                                                  )
+                                                      // zerohap: () =>
+                                                      //   onDelete(index)
+
+                                                      )
                                                 ],
                                               ),
                                             ],
@@ -190,39 +191,42 @@ class _MyorderState extends State<Cartpage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  decoration:
-                      BoxDecoration(border: Border(top: BorderSide(width: .3))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: const Text(
-                          "\$120",
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.black,
-                        ),
-                        child: Center(
+                  decoration: const BoxDecoration(
+                      border: Border(top: BorderSide(width: .2))),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20),
                           child: Text(
-                            "Place order",
+                            "\$120",
                             style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18),
+                              fontSize: 24,
+                              fontWeight: FontWeight.w900,
+                            ),
                           ),
                         ),
-                      )
-                    ],
+                        Container(
+                          height: screensize.height * .065,
+                          width: screensize.width * .5,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black,
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "Place order",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
