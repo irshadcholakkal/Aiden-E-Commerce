@@ -1,3 +1,4 @@
+import 'package:aiden/model/getx_controller.dart';
 import 'package:aiden/utils/texts.dart';
 import 'package:aiden/utils/variables.dart';
 import 'package:aiden/view/signin_pages/login_screen/login_screen.dart';
@@ -6,18 +7,14 @@ import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:aiden/utils/images.dart';
+import 'package:get/get.dart';
 
-class ContentsOfSplashScreen extends StatefulWidget {
-  const ContentsOfSplashScreen({super.key});
+// ignore: must_be_immutable
+class ContentsOfSplashScreen extends StatelessWidget {
+  ContentsOfSplashScreen({super.key});
+  final SplashControl controller = Get.put(SplashControl());
+  final PageController _pageController = PageController();
 
-  @override
-  State<ContentsOfSplashScreen> createState() => _ContentsState();
-}
-
-PageController _pageController = PageController();
-int currentPage = 0;
-
-class _ContentsState extends State<ContentsOfSplashScreen> {
   @override
   Widget build(BuildContext context) {
     hight = MediaQuery.of(context).size.height;
@@ -38,24 +35,21 @@ class _ContentsState extends State<ContentsOfSplashScreen> {
                 controller: _pageController,
                 children: slides,
                 onPageChanged: (int index) {
-                  setState(() {
-                    currentPage = index;
-                  });
+                  controller.currentPage.value = index;
                 },
               )),
           SizedBox(
             height: hight! * 0.05,
             width: width,
-            child: DotsIndicator(
-          dotsCount:slides.length,
-          position: currentPage,
-           decorator: const DotsDecorator(spacing: EdgeInsets.all(15),activeColor: Colors.black)
-           ,
-           ),
+            child: Obx(
+              () => DotsIndicator(
+                dotsCount: slides.length,
+                position: controller.currentPage.value,
+                decorator: const DotsDecorator(
+                    spacing: EdgeInsets.all(15), activeColor: Colors.black),
+              ),
+            ),
           ),
-         
-         
-         
         ],
       ),
     );
@@ -80,18 +74,22 @@ Widget firstSlide() {
       SizedBox(
         height: hight! * 0.03,
       ),
-      SizedBox(
-        height: hight! * 0.09,
-        width: width! * 0.9,
-        child: firstSlideTextMain,
+      FittedBox(
+        child: SizedBox(
+          height: hight! * 0.1,
+          width: width! * 0.9,
+          child: firstSlideTextMain,
+        ),
       ),
       SizedBox(
         height: hight! * 0.025,
       ),
-      SizedBox(
-        height: hight! * 0.06,
-        width: width! * 0.9,
-        child: firstSlideTextsub,
+      FittedBox(
+        child: SizedBox(
+          height: hight! * 0.15,
+          width: width! * 0.9,
+          child: firstSlideTextsub,
+        ),
       ),
     ],
   );
@@ -115,18 +113,22 @@ Widget secondSlide() {
       SizedBox(
         height: hight! * 0.03,
       ),
-      SizedBox(
-        height: hight! * 0.09,
-        width: width! * 0.9,
-        child: secondSlideTextMain,
+      FittedBox(
+        child: SizedBox(
+          height: hight! * 0.1,
+          width: width! * 0.9,
+          child: secondSlideTextMain,
+        ),
       ),
       SizedBox(
         height: hight! * 0.025,
       ),
-      SizedBox(
-        height: hight! * 0.06,
-        width: width! * 0.9,
-        child: secondSlideTextsub,
+      FittedBox(
+        child: SizedBox(
+          height: hight! * 0.15,
+          width: width! * 0.9,
+          child: secondSlideTextsub,
+        ),
       ),
     ],
   );
@@ -155,11 +157,7 @@ Widget thirdSlide(BuildContext context) {
         text: "Login",
         context: context,
         onpressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Loginscreen(),
-              ));
+         Get.to(const Loginscreen());
           // Please change the route from here //
         },
       ),
@@ -171,11 +169,7 @@ Widget thirdSlide(BuildContext context) {
         text: "SignUp",
         context: context,
         onpressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>const SignupPage(),
-              ));
+         Get.to( const SignupPage());
           // Please change the route from here //
         },
       )

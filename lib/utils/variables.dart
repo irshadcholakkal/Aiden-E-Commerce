@@ -22,4 +22,4 @@ final stl = GoogleFonts.poppins(
   color: black,
   fontSize: 18,
 );
-final gridTextStyle = GoogleFonts.poppins(fontWeight: FontWeight.bold);
+final gridTextStyle = GoogleFonts.poppins(fontWeight: FontWeight.w600);
