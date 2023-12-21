@@ -1,10 +1,14 @@
-
+import 'package:aiden/firebase_options.dart';
 import 'package:aiden/view/signin_pages/splash_screen/splash_screen.dart';
-import 'package:aiden/view/welcome_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+Future<void> main()async {
+WidgetsFlutterBinding.ensureInitialized();
+   Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MainApp());
 }
 

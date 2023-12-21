@@ -1,12 +1,15 @@
 import 'package:aiden/model/fav_model.dart';
 import 'package:aiden/model/product_models/list_of_product_model.dart';
-import 'package:aiden/utils/colors.dart';
-import 'package:aiden/utils/variables.dart';
+import 'package:aiden/model/services/product_details_model_class.dart';
+import 'package:aiden/model/services/user_data.dart';
+import 'package:aiden/view/carts/products_page.dart';
+import 'package:aiden/viewmodel/utils/colors.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
-import 'package:aiden/view/list_of_pages/profile_page/widget/tabbar.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:aiden/viewmodel/fatch_api.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
 
@@ -34,27 +37,29 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          margin:const EdgeInsets.only(left: 7,right: 7) ,
+          margin: const EdgeInsets.only(left: 7, right: 7),
           child: NestedScrollView(
-            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
                   backgroundColor: Colors.transparent,
-                  expandedHeight: screensize.height * 0.14,
-                 // floating: false,
+                  expandedHeight: screensize.height * 0.33,
+                  // floating: false,
                   // pinned: true,
                   centerTitle: false,
                   elevation: 0,
                   flexibleSpace: FlexibleSpaceBar(
                     centerTitle: false,
-                  expandedTitleScale: 1,
-                
+                    expandedTitleScale: 1,
+                    collapseMode: CollapseMode.parallax,
+                  
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: screensize.width * 0.6,
-                          height: screensize.height * 0.042,
+                          width: screensize.width * 0.65,
+                          height: screensize.height * 0.05,
                           decoration: BoxDecoration(boxShadow: [
                             BoxShadow(
                                 offset: const Offset(12, 26),
@@ -99,9 +104,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        // SizedBox(
-                        //   width: screensize.width * 0.02,
-                        // ),
                         CircleAvatar(
                           backgroundColor: Colors.black,
                           maxRadius: screensize.width * 0.035,
@@ -115,9 +117,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                     background: Column(
                       children: [
-                        // SizedBox(
-                        //   height: screensize.height * 0.06,
-                        // ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -130,23 +129,20 @@ class _HomePageState extends State<HomePage> {
                                 scale: 6,
                               ),
                             ),
-                            brandName(20.0 ,black, FontWeight.w500),
-                            // SizedBox(
-                            //   width: screensize.width * 0.55,
-                            // ),
-                            CircleAvatar(
-                              backgroundColor: Colors.purple.shade100,
-                              maxRadius: screensize.width * 0.048,
-                              child: Image.asset(
-                                "assets/images/hacker_icon.png",
-                                width: 35,
-                              ),
-                            )
+                            brandName(20.0, black, FontWeight.w500),
+                            Obx(() {
+                              if (controller.userData.value != null) {
+                                return CircleAvatar(
+                                  maxRadius: screensize.width * 0.048,
+                                  backgroundImage:
+                                      NetworkImage(userData.photoURL),
+                                );
+                              } else {
+                                return CircularProgressIndicator();
+                              }
+                            }),
                           ],
                         ),
-                        // SizedBox(
-                        //   height: screensize.height * 0.04,
-                        // ),
                         Row(
                           children: [
                             SizedBox(
@@ -162,23 +158,166 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        // Row(
-                        //   children: [
-                        //     // SizedBox(
-                        //     //   width: screensize.width * 0.05,
-                        //     // ),
-                        //     FittedBox(
-                        //       fit: BoxFit.scaleDown,
-                        //       child: Text(
-                        //         "To Fashion World",
-                        //         style: GoogleFonts.poppins(
-                        //             fontSize: 16,
-                        //             fontWeight: FontWeight.w500,
-                        //             color: Colors.grey),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
+                        SizedBox(
+                          height: screensize.height * 0.18,
+                          width: screensize.width,
+                          child: PageView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: const EdgeInsets.all(15),
+                                height: screensize.height * 0.14,
+                                width: screensize.width * 0.8,
+                                decoration: const BoxDecoration(
+                                  // color: Colors.black,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(55, 0, 0, 0),
+                                      offset: Offset(
+                                        5.0,
+                                        5.0,
+                                      ),
+                                      blurRadius: 10.0,
+                                      spreadRadius: 2.0,
+                                    ), //BoxShadow
+                                    BoxShadow(
+                                      color: Colors.white,
+                                      offset: Offset(0.0, 0.0),
+                                      blurRadius: 0.0,
+                                      spreadRadius: 0.0,
+                                    ), //BoxShadow
+                                  ],
+
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(15),
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: screensize.height * 0.013),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        // SizedBox(width: screensize.width * 0.015),
+                                        Container(
+                                          height: screensize.height * 0.105,
+                                          width: screensize.width * 0.17,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color: Colors.white),
+                                          child: Image.asset(
+                                              "assets/images/first demo.jpg"),
+                                        ),
+                                        SizedBox(
+                                            width: screensize.width * 0.015),
+                                        Container(
+                                          height: screensize.height * 0.12,
+                                          width: screensize.width * 0.45,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color: Colors.white),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                  height: screensize.height *
+                                                      0.013),
+                                              Row(
+                                                children: [
+                                                  SizedBox(
+                                                      width: screensize.width *
+                                                          0.02),
+                                                  Text(
+                                                    "Axel Arigato",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: black),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  SizedBox(
+                                                      width: screensize.width *
+                                                          0.02),
+                                                  SizedBox(
+                                                    width:
+                                                        screensize.width * 0.43,
+                                                    child: Text(
+                                                      "Clean 90 Triple Sneakers",
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              fontSize: 13,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: Colors.grey
+                                                                  .shade500),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  SizedBox(
+                                                      width: screensize.width *
+                                                          0.02),
+                                                  Text(
+                                                    "\$245",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        color: Colors.black),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+
+                                        Container(
+                                          height: screensize.height * 0.105,
+                                          width: screensize.width * 0.12,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: Colors.white,
+                                          ),
+                                          child: Center(
+                                            child: InkWell(
+                                              onTap: () {},
+                                              child: Container(
+                                                  height:
+                                                      screensize.height * 0.05,
+                                                  width:
+                                                      screensize.width * 0.111,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: Colors.black,
+                                                  ),
+                                                  child: Image.asset(
+                                                    "assets/images/right-arrow.png",
+                                                    color: Colors.white,
+                                                  )),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -187,155 +326,10 @@ class _HomePageState extends State<HomePage> {
             },
             body: Column(
               children: [
-                // SizedBox(
-                //   height: screensize.height * 0.02,
-                // ),
-                SizedBox(
-                  height: screensize.height * 0.18,
-                  width: screensize.width,
-                  child: PageView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.all(15),
-                        height: screensize.height * 0.14,
-                        width: screensize.width * 0.8,
-                        decoration: const BoxDecoration(
-                          // color: Colors.black,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromARGB(55, 0, 0, 0),
-                              offset: Offset(
-                                5.0,
-                                5.0,
-                              ),
-                              blurRadius: 10.0,
-                              spreadRadius: 2.0,
-                            ), //BoxShadow
-                            BoxShadow(
-                              color: Colors.white,
-                              offset: Offset(0.0, 0.0),
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                            ), //BoxShadow
-                          ],
-          
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(height: screensize.height * 0.013),
-                            Row(
-                              children: [
-                              //  SizedBox(width: screensize.width * 0.015),
-                                Container(
-                                  height: screensize.height * 0.105,
-                                  width: screensize.width * 0.17,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.white),
-                                  child:
-                                      Image.asset("assets/images/first demo.jpg"),
-                                ),
-                                SizedBox(width: screensize.width * 0.015),
-                                Container(
-                                  height: screensize.height * 0.12,
-                                  width: screensize.width * 0.45,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.white),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(height: screensize.height * 0.013),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                              width: screensize.width * 0.02),
-                                          Text(
-                                            "Axel Arigato",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                                color: black),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                              width: screensize.width * 0.02),
-                                          SizedBox(
-                                            width: screensize.width * 0.43,
-                                            child: Text(
-                                              "Clean 90 Triple Sneakers",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.grey.shade500),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                              width: screensize.width * 0.02),
-                                          Text(
-                                            "\$245",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                                color: Colors.black),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                               // SizedBox(width: screensize.width * 0.015),
-                                Container(
-                                  height: screensize.height * 0.105,
-                                  width: screensize.width * 0.12,
-                                  // margin: EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: Colors.white,
-                                  ),
-                                  child: Center(
-                                    child: Container(
-                                        height: screensize.height * 0.05,
-                                        width: screensize.width * 0.111,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.black,
-                                        ),
-                                        child: Image.asset(
-                                          "assets/images/right-arrow.png",
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                // SizedBox(
-                //   height: screensize.height * 0.01,
-                // ),
                 SizedBox(
                   height: screensize.height * 0.035,
                   child: Row(
                     children: [
-                      // SizedBox(
-                      //   width: screensize.width * 0.1,
-                      // ),
                       Text(
                         "Categories",
                         style: GoogleFonts.poppins(
@@ -344,48 +338,44 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                // SizedBox(
-                //   height: screensize.height * 0.01,
-                // ),
                 SingleChildScrollView(
                   child: DefaultTabController(
                     initialIndex: selectedIndex,
                     length: 6,
                     child: TabBar(
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      indicatorWeight: 0,
-                      indicatorPadding: const EdgeInsets.all(5),
-                      tabAlignment: TabAlignment.start,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        indicatorWeight: 0,
+                        indicatorPadding: const EdgeInsets.all(5),
+                        tabAlignment: TabAlignment.start,
                         isScrollable: true,
                         onTap: (value) {
                           if (value == 0) {
-                            categoryName = "Smart Phones";
-                            category = "smartphones";
-          
+                            categoryName = "All Items";
+                            category = "All Items";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 1) {
                             category = "laptops";
-          
+
                             categoryName = "Laptops";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 2) {
                             category = "fragrances";
-          
+
                             categoryName = "Fragrances";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 3) {
                             category = "skincare";
-          
+
                             categoryName = "Skin Care";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 4) {
                             category = "groceries";
-          
+
                             categoryName = "Groceries";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 5) {
                             category = "home-decoration";
-          
+
                             categoryName = "Home Decoration";
                             fetch().then((v) => setState(() {}));
                           }
@@ -397,14 +387,15 @@ class _HomePageState extends State<HomePage> {
                         indicator: const BoxDecoration(
                             shape: BoxShape.rectangle,
                             color: Color.fromARGB(198, 0, 0, 0),
-                            borderRadius: BorderRadius.all(Radius.circular(30))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
                         // indicatorPadding: const EdgeInsets.all(5),
                         tabs: const [
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 0),
                             child: Tab(
-                              text: 'Smart Phones',
+                              text: 'All Items',
                             ),
                           ),
                           Padding(
@@ -470,74 +461,75 @@ class _HomePageState extends State<HomePage> {
                               // mainAxisSpacing: 15,
                               // crossAxisSpacing: 15,
                               crossAxisCount: 2),
-                      itemCount: usermodel.products?.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            usermodel.products?[index].thumbnail != null
-                                ? Stack(
-                                    alignment: Alignment.topRight,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(20)),
-                                        child: Image.network(
-                                          "${usermodel.products?[index].thumbnail}",
-                                          fit: BoxFit.fill,
-                                          height: hight!*0.21,
-                                          width: width!*0.45,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: CircleAvatar(
-                                          radius: 15,
-                                          backgroundColor: black,
-                                          child: LikeButton(
-                                            onTap: (isLiked) {
-                                              print(isLiked);
-                                              if (isLiked == false) {
-                                                likedListNotify.value.add(FavModel(
-                                                    image: usermodel
-                                                        .products?[index].images[0],
-                                                    productNmae: usermodel
-                                                        .products?[index].title,
-                                                    discreption: usermodel
-                                                        .products?[index]
-                                                        .description));
-                                                print(likedListNotify);
-                                              } else {
-                                                likedListNotify.value.removeLast();
-                                                print(likedListNotify);
-                                              }
-                                              return Future(
-                                                  () => isLiked = !isLiked);
-                                            },
-                                            padding:
-                                                const EdgeInsets.only(left: 2),
-                                            size: 20,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                : const CircularProgressIndicator(),
-                            ListTile(
-                              title: Center(
+                      itemCount: controller.productsList.length,
+                      itemBuilder: (BuildContext context, index) {
+                        ProductData product = controller.productsList[index];
+
+                        return InkWell(
+                          onTap: (){
+                            Get.to(ProductPage(imageurls:product.imageUrl ,productdescription: product.productDescription,productname: product.productName,productprice: product.productPrice,));
+                          },
+                          child: Card(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Stack(alignment: Alignment.topRight, children: [
+                                Container(
+                                  width: screensize.width,
+                                  height: screensize.height * 0.25,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      product.imageUrl,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child: LikeButton(
+                                    onTap: (isLiked) {
+                                      print(isLiked);
+                                      if (isLiked == false) {
+                                        likedListNotify.value.add(FavModel(
+                                            image: product.imageUrl,
+                                            productNmae: product.productName,
+                                            discreption:
+                                                product.productDescription,
+                                            price: "₹: ${product.productPrice}"));
+                                        print(likedListNotify);
+                                      } else {
+                                        likedListNotify.value.removeLast();
+                                        print(likedListNotify);
+                                      }
+                                      return Future(() => isLiked = !isLiked);
+                                    },
+                                    padding: const EdgeInsets.only(left: 2),
+                                    size: 20,
+                                  ),
+                                ),
+                              ]),
+                              //
+                              Center(
                                   child: Text(
-                                      "${usermodel.products?[index].title}",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: gridTextStyle)),
-                              subtitle: Center(
+                                product.productName,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.rubik(),
+                              )),
+                              Align(
+                                alignment: Alignment.bottomLeft,
                                 child: Text(
-                              "\$${usermodel.products?[index].price.toDouble()}",
-                              style: gridTextStyle,
-                            ),
+                                  "₹: ${product.productPrice}",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.rubik(
+                                      fontSize: 18, fontWeight: FontWeight.w500),
+                                ),
                               ),
-                            ),
-                            
-                          ],
+                            ],
+                          )),
                         );
                       }),
                 )
@@ -545,7 +537,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        // bottomNavigationBar: navBar(context: context),
       ),
     );
   }

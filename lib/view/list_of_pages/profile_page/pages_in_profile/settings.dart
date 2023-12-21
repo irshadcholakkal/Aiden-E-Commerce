@@ -1,30 +1,28 @@
-import 'package:aiden/utils/colors.dart';
+
+import 'package:aiden/model/get_user_data_model_class.dart';
+import 'package:aiden/model/getx_controller.dart';
+import 'package:aiden/model/services/authentication_services.dart';
+import 'package:aiden/model/services/user_data.dart';
+import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/tabbar.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/textfieldrow.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({super.key});
+class Settings extends StatelessWidget {
+   Settings({super.key});
+  final Control controller = Get.put(Control());
 
-  @override
-  State<Settings> createState() => _SettingsState();
-}
-
-TextEditingController name = TextEditingController();
-TextEditingController age = TextEditingController();
-TextEditingController email = TextEditingController();
-
-bool notification = false;
-bool darkmode = false;
-
-class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
+        
         child: SingleChildScrollView(
           child: SizedBox(
             child: Column(
@@ -33,16 +31,25 @@ class _SettingsState extends State<Settings> {
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                    child: Image.asset("assets/images/hacker_icon.png"),
-                  ),
-                ),
+                Obx(() {
+                     if(controller.userData.value!=null){
+                    return  CircleAvatar(
+                      radius: 70,
+                      backgroundImage: NetworkImage(userData.photoURL),
+                    );
+                   }else{
+                    return
+                    CircularProgressIndicator();
+                   }
+
+                }),
+                
+                   
+
+                   
+                    
+                  
+                
                 Text(
                   "Upload image",
                   style: GoogleFonts.poppins(
@@ -55,7 +62,7 @@ class _SettingsState extends State<Settings> {
                     child: Column(
                       children: [
                         Fieldrow(text: "Name", controller: name),
-                        const Tabbar(),
+                       Tabbar(),
                         Fieldrow(text: "Age", controller: age),
                         Fieldrow(text: "Email", controller: email),
                       ],
@@ -103,17 +110,19 @@ class _SettingsState extends State<Settings> {
                             Icons.notifications,
                             color: black,
                           ),
-                          trailing: Switch(
-                            value: notification,
-                            activeTrackColor: const Color.fromARGB(179, 191, 191, 191),
-                            inactiveTrackColor: black,
-                            onChanged: (value) {
-                              setState(() {
-                                notification = value;
-                              });
-                            },
-                            activeColor: black,
-                            inactiveThumbColor:const Color.fromARGB(179, 191, 191, 191),
+                          trailing: Obx(
+                            ()=> Switch(
+                              value: controller.notification.value,
+                              activeTrackColor: const Color.fromARGB(179, 191, 191, 191),
+                              inactiveTrackColor: black,
+                              onChanged: (value) {
+                                
+                                 controller.notification.value = value;
+                               
+                              },
+                              activeColor: black,
+                              inactiveThumbColor:const Color.fromARGB(179, 191, 191, 191),
+                            ),
                           ),
                         ),
                         listtile(
@@ -122,17 +131,19 @@ class _SettingsState extends State<Settings> {
                             Icons.dark_mode,
                             color: black,
                           ),
-                          trailing: Switch(
-                            value: darkmode,
-                            activeTrackColor: const Color.fromARGB(179, 191, 191, 191),
-                            inactiveTrackColor: black,
-                            onChanged: (value) {
-                              setState(() {
-                                darkmode = value;
-                              });
-                            },
-                            activeColor: black,
-                            inactiveThumbColor: const Color.fromARGB(179, 191, 191, 191),
+                          trailing: Obx(
+                            ()=> Switch(
+                              value: controller.darkmode.value,
+                              activeTrackColor: const Color.fromARGB(179, 191, 191, 191),
+                              inactiveTrackColor: black,
+                              onChanged: (value) {
+                                
+                                 controller.darkmode.value = value;
+                               
+                              },
+                              activeColor: black,
+                              inactiveThumbColor: const Color.fromARGB(179, 191, 191, 191),
+                            ),
                           ),
                         ),
                         listtile(
@@ -156,7 +167,9 @@ class _SettingsState extends State<Settings> {
                   child: customeButton(
                     text: "Logout",
                     context: context,
-                    onpressed: () {},
+                    onpressed: () {
+                      Authentication().signOut();
+                    },
                     bgColor: const MaterialStatePropertyAll(black),
                   ),
                 )
@@ -168,3 +181,8 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
+  final Control controller = Get.put(Control());
+
+TextEditingController name = TextEditingController();
+TextEditingController age = TextEditingController();
+TextEditingController email = TextEditingController();

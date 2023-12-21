@@ -1,4 +1,4 @@
-import 'package:aiden/utils/colors.dart';
+import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 

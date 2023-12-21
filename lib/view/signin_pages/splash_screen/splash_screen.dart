@@ -9,7 +9,7 @@ import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatelessWidget {
 SplashScreen({super.key});
-final SplashControl controller =Get.put(SplashControl());
+final Control controller =Get.put(Control());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

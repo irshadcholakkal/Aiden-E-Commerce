@@ -1,6 +1,6 @@
-import 'package:aiden/utils/colors.dart';
-import 'package:aiden/utils/texts.dart';
-import 'package:aiden/utils/variables.dart';
+import 'package:aiden/viewmodel/utils/colors.dart';
+import 'package:aiden/viewmodel/utils/texts.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class BouncingButton extends StatefulWidget {

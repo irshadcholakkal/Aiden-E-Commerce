@@ -1,18 +1,18 @@
 import 'package:aiden/model/getx_controller.dart';
-import 'package:aiden/utils/texts.dart';
-import 'package:aiden/utils/variables.dart';
+import 'package:aiden/viewmodel/utils/texts.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:aiden/view/signin_pages/login_screen/login_screen.dart';
-import 'package:aiden/view/signin_pages/signup_page/signup_page.dart';
+import 'package:aiden/view/signin_pages/splash_screen/signup_page/signup_page.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:aiden/utils/images.dart';
+import 'package:aiden/viewmodel/utils/images.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class ContentsOfSplashScreen extends StatelessWidget {
   ContentsOfSplashScreen({super.key});
-  final SplashControl controller = Get.put(SplashControl());
+  final Control controller = Get.put(Control());
   final PageController _pageController = PageController();
 
   @override
@@ -157,7 +157,7 @@ Widget thirdSlide(BuildContext context) {
         text: "Login",
         context: context,
         onpressed: () {
-         Get.to(const Loginscreen());
+         Get.to( Loginscreen());
           // Please change the route from here //
         },
       ),
@@ -169,7 +169,7 @@ Widget thirdSlide(BuildContext context) {
         text: "SignUp",
         context: context,
         onpressed: () {
-         Get.to( const SignupPage());
+         Get.to( SignupPage());
           // Please change the route from here //
         },
       )

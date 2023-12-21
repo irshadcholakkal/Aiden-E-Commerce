@@ -1,4 +1,4 @@
-import 'package:aiden/utils/variables.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:iconsax/iconsax.dart';

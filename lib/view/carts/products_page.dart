@@ -1,17 +1,29 @@
-import 'package:aiden/utils/colors.dart';
-import 'package:aiden/utils/icons.dart';
-import 'package:aiden/utils/images.dart';
-import 'package:aiden/utils/texts.dart';
-import 'package:aiden/utils/variables.dart';
+import 'package:aiden/view/list_of_pages/add_cart/cartpage.dart';
+import 'package:aiden/viewmodel/utils/colors.dart';
+import 'package:aiden/viewmodel/utils/icons.dart';
+import 'package:aiden/viewmodel/utils/images.dart';
+import 'package:aiden/viewmodel/utils/texts.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:aiden/view/widgets/animated_button.dart';
 import 'package:aiden/view/widgets/counter.dart';
 import 'package:aiden/view/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({super.key});
+  final imageurls;
+  final productname;
+  final productdescription;
+  final productprice;
+
+  ProductPage(
+      {super.key,
+      this.imageurls,
+      this.productname,
+      this.productdescription,
+      this.productprice});
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -21,24 +33,24 @@ class _ProductPageState extends State<ProductPage> {
   int currentPage = 0;
   PageController controller = PageController();
   int indexOfSizes = 0;
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
 
-    _scrollController.addListener(checkScrollPosition);
+    scrollController.addListener(checkScrollPosition);
   }
 
   void checkScrollPosition() {
     setState(() {
-      if (_scrollController.hasClients &&
-          _scrollController.position.maxScrollExtent > 4 &&
-          _scrollController.position.minScrollExtent < 4) {
-        if (_scrollController.position.pixels <=
-            _scrollController.position.minScrollExtent) {}
-        if (_scrollController.position.pixels ==
-            _scrollController.position.maxScrollExtent) {}
+      if (scrollController.hasClients &&
+          scrollController.position.maxScrollExtent > 4 &&
+          scrollController.position.minScrollExtent < 4) {
+        if (scrollController.position.pixels <=
+            scrollController.position.minScrollExtent) {}
+        if (scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent) {}
       }
     });
   }
@@ -77,11 +89,15 @@ class _ProductPageState extends State<ProductPage> {
                   width: width,
                   child: PageView.builder(
                     controller: controller,
-                    itemCount: cartImages.length,
+                    //itemCount: cartImages.length,
                     itemBuilder: (context, index) {
-                      final Image images = cartImages[index];
                       return SizedBox(
-                          height: hight, width: width, child: images);
+                          height: hight,
+                          width: width,
+                          child: Image.network(
+                            widget.imageurls,
+                            fit: BoxFit.fill,
+                          ));
                     },
                   ),
                 ),
@@ -126,8 +142,16 @@ class _ProductPageState extends State<ProductPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ProductPageProductName,
-                            ProductPageProutSubName,
+                            Text(
+                              widget.productname,
+                              style: GoogleFonts.rubik(
+                                  fontSize: 25, fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "Clean 90 triale",
+                              style: GoogleFonts.rubik(
+                                  fontSize: 15, fontWeight: FontWeight.w200),
+                            ),
                             Row(
                               children: [
                                 ratingBar(rating: 3.5, minirating: 0, size: 15),
@@ -157,7 +181,7 @@ class _ProductPageState extends State<ProductPage> {
                             height: hight! * 0.07,
                             width: width! * 0.63,
                             child: ListView.builder(
-                              controller: _scrollController,
+                              controller: scrollController,
                               itemCount: dressSizes.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
@@ -180,21 +204,19 @@ class _ProductPageState extends State<ProductPage> {
                               },
                             ),
                           ),
-                          if (_scrollController.hasClients &&
-                              _scrollController.position.pixels <
-                                  _scrollController.position.maxScrollExtent)
+                          if (scrollController.hasClients &&
+                              scrollController.position.pixels <
+                                  scrollController.position.maxScrollExtent)
                             const Icon(Icons.arrow_forward_ios_rounded,
                                 size: 13),
-                          if (_scrollController.hasClients &&
-                              _scrollController.position.pixels ==
-                                  _scrollController.position.maxScrollExtent)
+                          if (scrollController.hasClients &&
+                              scrollController.position.pixels ==
+                                  scrollController.position.maxScrollExtent)
                             const Icon(Icons.arrow_back_ios_rounded, size: 13),
                         ],
                       ),
                     ),
-                    // SizedBox(
-                    //   height: hight! * 0.01,
-                    // ),
+                    
                     Text(
                       "Description",
                       style: GoogleFonts.rubik(
@@ -203,7 +225,11 @@ class _ProductPageState extends State<ProductPage> {
                     SizedBox(
                       width: double.infinity,
                       height: hight! * 0.15,
-                      child: SingleChildScrollView(child: Description),
+                      child: SingleChildScrollView(
+                        child: Text(widget.productdescription,
+                            style: GoogleFonts.rubik(
+                                fontSize: 10.5, fontWeight: FontWeight.w200)),
+                      ),
                     ),
                     Expanded(
                       child: Row(
@@ -221,11 +247,18 @@ class _ProductPageState extends State<ProductPage> {
                                       fontSize: 10,
                                       fontWeight: FontWeight.w200),
                                 ),
-                                Price
+                                Text(
+                                  "₹${widget.productprice}",
+                                  style: GoogleFonts.rubik(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ],
                             ),
                           ),
-                          BouncingButton(onTap: () {})
+                          BouncingButton(onTap: () {
+                            Get.to(Cartpage(imageurls: widget.imageurls,productname: widget.productname,));
+                          })
                         ],
                       ),
                     )

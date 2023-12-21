@@ -1,4 +1,4 @@
-import 'package:aiden/utils/variables.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class Counter extends StatefulWidget {

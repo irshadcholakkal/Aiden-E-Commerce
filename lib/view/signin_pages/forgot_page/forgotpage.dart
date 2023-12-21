@@ -1,6 +1,5 @@
-import 'package:aiden/utils/colors.dart';
+import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
-import 'package:aiden/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,18 +17,20 @@ final _formKey = GlobalKey<FormState>();
 class _ForgotpageState extends State<Forgotpage> {
   @override
   Widget build(BuildContext context) {
+    var screensize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: screensize.height,
+          width: screensize.width,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(
-                    height: 50,
+                    height: screensize.height * .06,
                   ),
                   SizedBox(
                       child: Column(
@@ -40,7 +41,7 @@ class _ForgotpageState extends State<Forgotpage> {
                             fontWeight: FontWeight.w800,
                           )),
                       SizedBox(
-                        height: 70,
+                        height: screensize.height * .085,
                       ),
                       Text(
                           "please enter your email address, we’ll send you a link to reset your password.",
@@ -51,7 +52,7 @@ class _ForgotpageState extends State<Forgotpage> {
                     ],
                   )),
                   SizedBox(
-                    height: 100,
+                    height: screensize.height * .12,
                   ),
                   SizedBox(
                     child: Column(
@@ -86,7 +87,7 @@ class _ForgotpageState extends State<Forgotpage> {
                           ),
                         ),
                         SizedBox(
-                          height: 200,
+                          height: screensize.height * .24,
                         ),
                         customeButton(
                             context: context,

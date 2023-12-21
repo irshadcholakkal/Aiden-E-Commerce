@@ -1,19 +1,22 @@
-import 'package:aiden/utils/colors.dart';
+import 'package:aiden/model/get_user_data_model_class.dart';
+import 'package:aiden/model/getx_controller.dart';
+import 'package:aiden/model/services/user_data.dart';
+import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/myorders/Myorder.dart';
 import 'package:aiden/view/list_of_pages/profile_page/pages_in_profile/settings.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/listtile.dart';
 import 'package:aiden/view/welcome_page.dart';
+import 'package:aiden/viewmodel/utils/variables.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Profilepage extends StatefulWidget {
-  const Profilepage({super.key});
+class Profilepage extends StatelessWidget {
+   Profilepage({super.key});
 
-  @override
-  State<Profilepage> createState() => _ProfilepageState();
-}
+    final Control controller = Get.put(Control());
 
-class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,38 +28,7 @@ class _ProfilepageState extends State<Profilepage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  height: 60,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 243, 243, 243)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const WelcomePage()));
-                            },
-                            icon: Image.asset(
-                              "assets/images/backword.jpg",
-                            )),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Settings()));
-                            },
-                            icon:const Icon(Icons.settings,color: black,) ),
-                      ],
-                    ),
-                  ),
-                ),
+                
                 const SizedBox(
                   height: 40,
                 ),
@@ -67,12 +39,22 @@ class _ProfilepageState extends State<Profilepage> {
                       decoration: BoxDecoration(
                           border: Border.all(color: grey),
                           borderRadius: BorderRadius.circular(20)),
-                      child: ListTile(
-                        leading: SizedBox(
-                          child: Image.asset("assets/images/hacker_icon.png"),
-                        ),
-                        title: const Text("name"),
-                        subtitle: const Text("email"),
+                      child: Obx(
+                        (){
+              if (controller.userData.value != null) {
+                return  ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(userData.photoURL),
+                    ),
+                    title: Text(userData.displayName),
+                    subtitle: Text(userData.email),
+                  );
+                
+              } else {
+                getUserData();
+                return CircularProgressIndicator();
+              }
+            },
                       )),
                 ),
                 const SizedBox(
@@ -105,18 +87,18 @@ class _ProfilepageState extends State<Profilepage> {
                                   MaterialPageRoute(
                                       builder: (context) => const Myorder()));
                                       }),
-                        listtile(
-                            text: "My Favourites",
-                            leading: const Icon(
-                              Icons.heart_broken,
-                              color: black,
-                            ),
-                            ontap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const FavPage()));
-                            }),
+                        InkWell(
+                          onTap: (){
+                            Get.to(FavPage());
+                          },
+                          child: listtile(
+                              text: "My Favourites",
+                              leading: const Icon(
+                                Icons.heart_broken,
+                                color: black,
+                              ),
+                              ),
+                        ),
                         listtile(
                             text: "Shipping Address",
                             leading: const Icon(
@@ -131,18 +113,18 @@ class _ProfilepageState extends State<Profilepage> {
                               color: Colors.black,
                             ),
                             ontap: () {}),
-                        listtile(
-                          text: " Settings",
-                          leading: const Icon(
-                            Icons.settings,
-                            color: Colors.black,
-                          ),
-                          ontap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Settings()));
+                        InkWell(
+                          onTap: (){
+                            Get.to(Settings());
                           },
+                          child: listtile(
+                            text: " Settings",
+                            leading: const Icon(
+                              Icons.settings,
+                              color: Colors.black,
+                            ),
+                           
+                          ),
                         )
                       ],
                     ),

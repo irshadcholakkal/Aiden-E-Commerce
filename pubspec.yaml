@@ -7,7 +7,10 @@ environment:
   sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
+  cloud_firestore: ^4.13.3
   dots_indicator: ^3.0.0
+  firebase_auth: ^4.15.0
+  firebase_core: ^2.24.0
   flutter:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
@@ -15,6 +18,7 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.1.0
   google_nav_bar: ^5.0.6
+  google_sign_in: ^6.1.6
   http: ^1.1.0
   iconsax: ^0.0.8
   like_button: ^2.0.5
