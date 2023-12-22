@@ -108,7 +108,8 @@ Future<void> retrieveAllProductData() async {
                 productName: doc['ProductName'],
                 productDescription: doc['ProductDescription'],
                 productPrice: doc['ProductPrice'],
-                imageUrl:doc['ProductImageUrl']
+                imageUrl:doc['ProductImageUrl'],
+                productId:doc['ProductId']
               ),
             )
             .toList());
