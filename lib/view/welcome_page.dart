@@ -1,4 +1,7 @@
+
 import 'package:aiden/model/getx_controller.dart';
+import 'package:aiden/model/services/cart/cart_store.dart';
+import 'package:aiden/view/list_of_pages/notification/notification_page.dart';
 import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/viewmodel/utils/images.dart';
 import 'package:aiden/viewmodel/utils/variables.dart';
@@ -9,22 +12,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class WelcomePage extends StatefulWidget {
-  const WelcomePage({super.key});
+class WelcomePage extends StatelessWidget {
+ WelcomePage({super.key});
 
-  @override
-  State<WelcomePage> createState() => _WelcomePageState();
-}
-
-class _WelcomePageState extends State<WelcomePage> {
     final Control controller = Get.put(Control());
 
   List<dynamic> listOfPages = [
    const HomePage(),
     Cartpage(),
-   const HomePage(),
+    NotificationPage(),
     Profilepage()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -57,6 +56,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   text: "Home",
                   textStyle: gnavStyle,
                   leading: gnavhomeImage,
+                  
                 ),
                 GButton(
                 
@@ -65,6 +65,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   leading: gnavcartImage,
                   backgroundColor: gnavBGColor,
                   textStyle: gnavStyle,
+                  
+                  
                 ),
                 GButton(
                  
@@ -81,6 +83,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   leading: gnavprofileImage,
                   backgroundColor: gnavBGColor,
                   textStyle: gnavStyle,
+                  
                 )
               ],
               onTabChange: (value) {

@@ -1,4 +1,5 @@
 import 'package:aiden/model/getx_controller.dart';
+import 'package:aiden/model/services/authentication_services.dart';
 import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/viewmodel/utils/images.dart';
 import 'package:aiden/viewmodel/utils/texts.dart';
@@ -15,13 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 class SignupPage extends StatelessWidget {
   SignupPage({super.key});
 
-  TextEditingController userNameController = TextEditingController();
-
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  TextEditingController confPasswordController = TextEditingController();
+  
 
   final Control controller = Get.put(Control());
 
@@ -156,7 +151,7 @@ class SignupPage extends StatelessWidget {
             customeButton(
                 context: context,
                 text: "Sign up",
-                onpressed: () {
+                onpressed: ()async {
                   if (_formKey.currentState!.validate()) {
                     if (controller.isCheckBoxEnabled.value != true) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -167,7 +162,8 @@ class SignupPage extends StatelessWidget {
                         ),
                       )));
                     } else {
-                     Get.offAll(Startingpage());
+                      await AuthFunctions().signUpWithEmail(emailController.text.trim(), confPasswordController.text.trim(),context);
+
                     }
                   }
                 },

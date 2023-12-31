@@ -1,13 +1,14 @@
 import 'package:aiden/model/fav_model.dart';
+import 'package:aiden/model/getx_controller.dart';
 import 'package:aiden/model/product_models/list_of_product_model.dart';
-import 'package:aiden/model/services/product_details_model_class.dart';
+import 'package:aiden/model/services/product/product_data.dart';
+import 'package:aiden/model/services/product/product_details_model_class.dart';
 import 'package:aiden/model/services/user_data.dart';
 import 'package:aiden/view/carts/products_page.dart';
 import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:aiden/view/list_of_pages/profile_page/widget/fav.dart';
 import 'package:aiden/view/widgets/text_widget.dart';
-import 'package:aiden/viewmodel/fatch_api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,13 +32,19 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  Future<void> _refresh() async {
+    await retrieveAllProductData();
+  }
+
+  final Control controller = Get.put(Control());
+
   @override
   Widget build(BuildContext context) {
     var screensize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Container(
-          margin: const EdgeInsets.only(left: 7, right: 7),
+          margin: const EdgeInsets.only(left: 5, right: 5),
           child: NestedScrollView(
             headerSliverBuilder:
                 (BuildContext context, bool innerBoxIsScrolled) {
@@ -53,7 +60,6 @@ class _HomePageState extends State<HomePage> {
                     centerTitle: false,
                     expandedTitleScale: 1,
                     collapseMode: CollapseMode.parallax,
-                  
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -351,30 +357,30 @@ class _HomePageState extends State<HomePage> {
                         onTap: (value) {
                           if (value == 0) {
                             categoryName = "All Items";
-                            category = "All Items";
+                            // category = "All Items";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 1) {
-                            category = "laptops";
+                            // category = "laptops";
 
                             categoryName = "Laptops";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 2) {
-                            category = "fragrances";
+                            //category = "fragrances";
 
                             categoryName = "Fragrances";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 3) {
-                            category = "skincare";
+                            // category = "skincare";
 
                             categoryName = "Skin Care";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 4) {
-                            category = "groceries";
+                            // category = "groceries";
 
                             categoryName = "Groceries";
                             fetch().then((v) => setState(() {}));
                           } else if (value == 5) {
-                            category = "home-decoration";
+                            // category = "home-decoration";
 
                             categoryName = "Home Decoration";
                             fetch().then((v) => setState(() {}));
@@ -452,86 +458,113 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Expanded(
-                  child: GridView.builder(
-                      cacheExtent: 200,
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: .65,
-                              // mainAxisSpacing: 15,
-                              // crossAxisSpacing: 15,
-                              crossAxisCount: 2),
-                      itemCount: controller.productsList.length,
-                      itemBuilder: (BuildContext context, index) {
-                        ProductData product = controller.productsList[index];
+                  child: RefreshIndicator(
+                    color: white,
+                    backgroundColor: black,
+                    displacement: 100,
+                    triggerMode: RefreshIndicatorTriggerMode.anywhere,
+                    strokeWidth: 1,
+                    onRefresh: _refresh,
+                    child: Obx(
+                      () => GridView.builder(
+                          cacheExtent: 200,
+                          shrinkWrap: true,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: .65,
+                                  // mainAxisSpacing: 15,
+                                  // crossAxisSpacing: 15,
+                                  crossAxisCount: 2),
+                          itemCount: controller.productsList.length,
+                          itemBuilder: (BuildContext context, index) {
+                            ProductData product =
+                                controller.productsList[index];
 
-                        return InkWell(
-                          onTap: (){
-                            Get.to(ProductPage(imageurls:product.imageUrl ,productdescription: product.productDescription,productname: product.productName,productprice: product.productPrice,));
-                          },
-                          child: Card(
-                              child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Stack(alignment: Alignment.topRight, children: [
-                                Container(
-                                  width: screensize.width,
-                                  height: screensize.height * 0.25,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      product.imageUrl,
-                                      fit: BoxFit.fill,
+                            return InkWell(
+                              onTap: () {
+                                Get.to(ProductPage(
+                                  imageurls: product.imageUrl,
+                                  productdescription:
+                                      product.productDescription,
+                                  productname: product.productName,
+                                  productprice: product.productPrice,
+                                ));
+                              },
+                              child: Card(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Stack(
+                                      alignment: Alignment.topRight,
+                                      children: [
+                                        Container(
+                                          width: screensize.width,
+                                          height: screensize.height * 0.25,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.network(
+                                              product.imageUrl,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        ),
+                                        CircleAvatar(
+                                          backgroundColor: Colors.transparent,
+                                          child: LikeButton(
+                                            onTap: (isLiked) {
+                                              print(isLiked);
+                                              if (isLiked == false) {
+                                                likedListNotify.value.add(FavModel(
+                                                    image: product.imageUrl,
+                                                    productNmae:
+                                                        product.productName,
+                                                    discreption: product
+                                                        .productDescription,
+                                                    price:
+                                                        "₹: ${product.productPrice}"));
+                                                print(likedListNotify);
+                                              } else {
+                                                likedListNotify.value
+                                                    .removeLast();
+                                                print(likedListNotify);
+                                              }
+                                              return Future(
+                                                  () => isLiked = !isLiked);
+                                            },
+                                            padding:
+                                                const EdgeInsets.only(left: 2),
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ]),
+                                  //
+                                  Center(
+                                      child: Text(
+                                    product.productName,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.rubik(),
+                                  )),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      "₹: ${product.productPrice}",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.rubik(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
-                                ),
-                                CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: LikeButton(
-                                    onTap: (isLiked) {
-                                      print(isLiked);
-                                      if (isLiked == false) {
-                                        likedListNotify.value.add(FavModel(
-                                            image: product.imageUrl,
-                                            productNmae: product.productName,
-                                            discreption:
-                                                product.productDescription,
-                                            price: "₹: ${product.productPrice}"));
-                                        print(likedListNotify);
-                                      } else {
-                                        likedListNotify.value.removeLast();
-                                        print(likedListNotify);
-                                      }
-                                      return Future(() => isLiked = !isLiked);
-                                    },
-                                    padding: const EdgeInsets.only(left: 2),
-                                    size: 20,
-                                  ),
-                                ),
-                              ]),
-                              //
-                              Center(
-                                  child: Text(
-                                product.productName,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.rubik(),
+                                ],
                               )),
-                              Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  "₹: ${product.productPrice}",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.rubik(
-                                      fontSize: 18, fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ],
-                          )),
-                        );
-                      }),
+                            );
+                          }),
+                    ),
+                  ),
                 )
               ],
             ),
@@ -542,7 +575,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   fetch() async {
-    usermodel = await fechfake();
+    // usermodel = await fechfake();
     print("datafetched");
   }
 }

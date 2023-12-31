@@ -1,5 +1,5 @@
 import 'package:aiden/model/getx_controller.dart';
-import 'package:aiden/model/services/product_details_model_class.dart';
+import 'package:aiden/model/services/product/product_details_model_class.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -124,6 +124,35 @@ Future<void> retrieveAllProductData() async {
     print('User is not signed in.');
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import 'package:aiden/model/services/product_details_model_class.dart';

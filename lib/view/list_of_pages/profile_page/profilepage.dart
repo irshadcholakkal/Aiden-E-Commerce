@@ -13,57 +13,66 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Profilepage extends StatelessWidget {
-   Profilepage({super.key});
+  Profilepage({super.key});
 
-    final Control controller = Get.put(Control());
+  final Control controller = Get.put(Control());
+  Future<void> _refresh() async {
+    await getUserData();
+  }
 
   @override
   Widget build(BuildContext context) {
+    var screensize = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                
-                const SizedBox(
-                  height: 40,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 10, left: 20, right: 20),
-                  child: Container(
+      body: RefreshIndicator(
+        color: white,
+        backgroundColor: black,
+        displacement: 200,
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        strokeWidth: 1,
+        onRefresh: _refresh,
+        child: Container(
+          margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: screensize.height * 0.03,
+                  ),
+                  Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: grey),
                           borderRadius: BorderRadius.circular(20)),
                       child: Obx(
-                        (){
-              if (controller.userData.value != null) {
-                return  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(userData.photoURL),
-                    ),
-                    title: Text(userData.displayName),
-                    subtitle: Text(userData.email),
-                  );
-                
-              } else {
-                getUserData();
-                return CircularProgressIndicator();
-              }
-            },
+                        () {
+                          if (controller.userData.value != null) {
+                            return InkWell(
+                              onTap: () {
+                                Get.to(Settings());
+                              },
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage:
+                                      NetworkImage(userData.photoURL),
+                                ),
+                                title: Text(userData.displayName),
+                                subtitle: Text(userData.email),
+                              ),
+                            );
+                          } else {
+                            getUserData();
+                            return const CircularProgressIndicator();
+                          }
+                        },
                       )),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 10, left: 20, right: 20),
-                  child: Container(
+                  SizedBox(
+                    height: screensize.height * 0.03,
+                  ),
+                  Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: grey),
                         borderRadius: BorderRadius.circular(20)),
@@ -76,28 +85,29 @@ class Profilepage extends StatelessWidget {
                               color: Colors.black,
                             ),
                             ontap: () {}),
-                        listtile(
+                        InkWell(
+                          onTap: () {
+                            Get.to(Myorder());
+                          },
+                          child: listtile(
                             text: "My Orders",
                             leading: const Icon(
                               Icons.shopping_bag,
                               color: Colors.black,
                             ),
-                            ontap: () { Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Myorder()));
-                                      }),
+                          ),
+                        ),
                         InkWell(
-                          onTap: (){
-                            Get.to(FavPage());
+                          onTap: () {
+                            Get.to(() => FavPage());
                           },
                           child: listtile(
-                              text: "My Favourites",
-                              leading: const Icon(
-                                Icons.heart_broken,
-                                color: black,
-                              ),
-                              ),
+                            text: "My Favourites",
+                            leading: const Icon(
+                              Icons.heart_broken,
+                              color: black,
+                            ),
+                          ),
                         ),
                         listtile(
                             text: "Shipping Address",
@@ -114,7 +124,7 @@ class Profilepage extends StatelessWidget {
                             ),
                             ontap: () {}),
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Get.to(Settings());
                           },
                           child: listtile(
@@ -123,17 +133,15 @@ class Profilepage extends StatelessWidget {
                               Icons.settings,
                               color: Colors.black,
                             ),
-                           
                           ),
                         )
                       ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 10, left: 20, right: 20),
-                  child: Container(
+                  SizedBox(
+                    height: screensize.height * 0.03,
+                  ),
+                  Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: grey),
                         borderRadius: BorderRadius.circular(20)),
@@ -170,8 +178,8 @@ class Profilepage extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

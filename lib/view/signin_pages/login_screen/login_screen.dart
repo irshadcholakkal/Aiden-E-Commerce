@@ -151,9 +151,10 @@ class Loginscreen extends StatelessWidget {
             customeButton(
                 context: context,
                 text: 'Login',
-                onpressed: () {
+                onpressed: ()async {
                   if (_formKey.currentState!.validate()) {
-                    Get.offAll(Startingpage());
+                    await AuthFunctions().signInWithEmail(email.text.trim(), password.text.trim(),context);
+                  
                   }
                 },
                 bgColor: const MaterialStatePropertyAll(Colors.black)),
@@ -186,7 +187,7 @@ class Loginscreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Sign Up with Google',
+                      'Sign In with Google',
                       style: GoogleFonts.rubik(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,

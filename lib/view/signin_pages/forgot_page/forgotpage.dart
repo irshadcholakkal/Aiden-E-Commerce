@@ -1,3 +1,4 @@
+import 'package:aiden/model/services/authentication_services.dart';
 import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/view/widgets/custome_button.dart';
 import 'package:flutter/material.dart';
@@ -92,8 +93,11 @@ class _ForgotpageState extends State<Forgotpage> {
                         customeButton(
                             context: context,
                             text: 'send',
-                            onpressed: () {
-                              if (_formKey.currentState!.validate()) {}
+                            onpressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                await AuthFunctions().sendPasswordResetEmail(
+                                    email.text.trim(), context);
+                              }
                             },
                             bgColor:
                                 const MaterialStatePropertyAll(Colors.black)),

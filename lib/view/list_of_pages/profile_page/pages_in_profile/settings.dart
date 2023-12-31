@@ -35,7 +35,8 @@ class Settings extends StatelessWidget {
                      if(controller.userData.value!=null){
                     return  CircleAvatar(
                       radius: 70,
-                      backgroundImage: NetworkImage(userData.photoURL),
+                      backgroundImage:
+                      NetworkImage(userData.photoURL),
                     );
                    }else{
                     return

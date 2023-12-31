@@ -1,7 +1,7 @@
 class CartData {
   String cartName;
   String cartDescription;
-  String cartPrice;
+  int cartPrice;
   String cartimageUrl;
   // int productId;
 

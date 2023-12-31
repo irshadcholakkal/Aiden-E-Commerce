@@ -2,8 +2,10 @@ import 'package:aiden/model/get_user_data_model_class.dart';
 import 'package:aiden/model/getx_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-  final Control controller = Get.put(Control());
+
+final Control controller = Get.put(Control());
 
 // Function to store Google signed user name and email in Firestore
 Future<void> storeUserData() async {
@@ -11,10 +13,9 @@ Future<void> storeUserData() async {
   User? user = FirebaseAuth.instance.currentUser;
   if (user != null) {
     // Get user data
-    String displayName = user.displayName ?? "";
+    String displayName = user.displayName ?? userNameController.text;
     String email = user.email ?? "";
     String photoURL = user.photoURL ?? "";
-
 
     // Get a reference to the Firestore database
     FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -39,43 +40,40 @@ Future<void> storeUserData() async {
   }
 }
 
+Future<void> getUserData() async {
+  // Check if the user is signed in
+  User? user = FirebaseAuth.instance.currentUser;
 
+  if (user != null) {
+    try {
+      // Get a reference to the Firestore database
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+      // Get the user document from the 'User' collection (make sure it matches your collection name)
+      DocumentSnapshot userSnapshot =
+          await firestore.collection('User').doc(user.uid).get();
 
- Future<void> getUserData() async {
-    // Check if the user is signed in
-    User? user = FirebaseAuth.instance.currentUser;
+      // Check if the document exists
+      if (userSnapshot.exists) {
+        // Extract data from the document
+        Map<String, dynamic> userDataMap =
+            userSnapshot.data() as Map<String, dynamic>;
 
-    if (user != null) {
-      try {
-        // Get a reference to the Firestore database
-        FirebaseFirestore firestore = FirebaseFirestore.instance;
+        // Create a User object
+        UserData fetchedUser = UserData(
+          displayName: userDataMap['displayName'],
+          email: userDataMap['email'],
+          photoURL: userDataMap['photoURL'],
+        );
 
-        // Get the user document from the 'User' collection (make sure it matches your collection name)
-        DocumentSnapshot userSnapshot =
-            await firestore.collection('User').doc(user.uid).get();
-
-        // Check if the document exists
-        if (userSnapshot.exists) {
-          // Extract data from the document
-          Map<String, dynamic> userDataMap =
-              userSnapshot.data() as Map<String, dynamic>;
-
-          // Create a User object
-          UserData fetchedUser = UserData(
-            displayName: userDataMap['displayName'],
-            email: userDataMap['email'],
-            photoURL: userDataMap['photoURL'],
-          );
-
-          controller.userData.value = fetchedUser;
-        } else {
-          print('User document does not exist in Firestore.');
-        }
-      } catch (error) {
-        print('Error retrieving user data: $error');
+        controller.userData.value = fetchedUser;
+      } else {
+        print('User document does not exist in Firestore.');
       }
-    } else {
-      print('User is not signed in.');
+    } catch (error) {
+      print('Error retrieving user data: $error');
     }
+  } else {
+    print('User is not signed in.');
   }
+}

@@ -1,14 +1,13 @@
-import 'package:aiden/view/list_of_pages/add_cart/cartpage.dart';
+import 'package:aiden/model/services/cart/cart_store.dart';
+import 'package:aiden/view/widgets/snack_bar.dart';
 import 'package:aiden/viewmodel/utils/colors.dart';
 import 'package:aiden/viewmodel/utils/icons.dart';
 import 'package:aiden/viewmodel/utils/images.dart';
 import 'package:aiden/viewmodel/utils/texts.dart';
 import 'package:aiden/viewmodel/utils/variables.dart';
 import 'package:aiden/view/widgets/animated_button.dart';
-import 'package:aiden/view/widgets/counter.dart';
 import 'package:aiden/view/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -147,11 +146,11 @@ class _ProductPageState extends State<ProductPage> {
                               style: GoogleFonts.rubik(
                                   fontSize: 25, fontWeight: FontWeight.w500),
                             ),
-                            Text(
-                              "Clean 90 triale",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 15, fontWeight: FontWeight.w200),
-                            ),
+                            // Text(
+                            //   "Clean 90 triale",
+                            //   style: GoogleFonts.rubik(
+                            //       fontSize: 15, fontWeight: FontWeight.w200),
+                            // ),
                             Row(
                               children: [
                                 ratingBar(rating: 3.5, minirating: 0, size: 15),
@@ -168,9 +167,11 @@ class _ProductPageState extends State<ProductPage> {
                             )
                           ],
                         ),
-                        Counter(
-                          c: Colors.grey.shade400,
-                        )
+
+              //----------------------------------Counter--------------------------------------------------------///          
+                        // Counter(
+                        //   c: Colors.grey.shade400,
+                        // )
                       ],
                     ),
                     Align(
@@ -257,7 +258,10 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                           BouncingButton(onTap: () {
-                            Get.to(Cartpage(imageurls: widget.imageurls,productname: widget.productname,));
+                            storeCartData(cartdescrption:widget.productdescription,cartname: widget.productname,cartphoto:  widget.imageurls,cartPrice: widget.productprice);
+                            //Get.to(Cartpage());
+                             getCartData();
+                             showSnackBar(context,"Added To Cart",300);
                           })
                         ],
                       ),
